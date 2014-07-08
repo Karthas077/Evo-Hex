@@ -37,6 +37,9 @@
 		1951176C196C9BCF00622136 /* HexGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175B196C9BCF00622136 /* HexGrid.m */; };
 		1951176D196C9BCF00622136 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175D196C9BCF00622136 /* Hex.m */; };
 		1951176E196C9BCF00622136 /* SuperHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511760196C9BCF00622136 /* SuperHex.m */; };
+		19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */; };
+		19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88F196CA5B400BDD56B /* EvoCreature.m */; };
+		19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A891196CA5B400BDD56B /* EvoEvolution.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +95,12 @@
 		1951175E196C9BCF00622136 /* HexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexProtocol.h; sourceTree = "<group>"; };
 		1951175F196C9BCF00622136 /* SuperHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHex.h; sourceTree = "<group>"; };
 		19511760196C9BCF00622136 /* SuperHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHex.m; sourceTree = "<group>"; };
+		19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoBodyPart.h; sourceTree = "<group>"; };
+		19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoBodyPart.m; sourceTree = "<group>"; };
+		19F2A88E196CA5B400BDD56B /* EvoCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreature.h; sourceTree = "<group>"; };
+		19F2A88F196CA5B400BDD56B /* EvoCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreature.m; sourceTree = "<group>"; };
+		19F2A890196CA5B400BDD56B /* EvoEvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoEvolution.h; sourceTree = "<group>"; };
+		19F2A891196CA5B400BDD56B /* EvoEvolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoEvolution.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +162,12 @@
 		19511713196C9B7500622136 /* Evo Hex */ = {
 			isa = PBXGroup;
 			children = (
+				19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */,
+				19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */,
+				19F2A88E196CA5B400BDD56B /* EvoCreature.h */,
+				19F2A88F196CA5B400BDD56B /* EvoCreature.m */,
+				19F2A890196CA5B400BDD56B /* EvoEvolution.h */,
+				19F2A891196CA5B400BDD56B /* EvoEvolution.m */,
 				1951174A196C9BCF00622136 /* Assets */,
 				19511754196C9BCF00622136 /* EvoGameScene.h */,
 				19511755196C9BCF00622136 /* EvoGameScene.m */,
@@ -342,13 +357,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				1951176B196C9BCF00622136 /* EvoUI.m in Sources */,
+				19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */,
 				1951171A196C9B7500622136 /* main.m in Sources */,
 				1951176E196C9BCF00622136 /* SuperHex.m in Sources */,
 				1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */,
 				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
 				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
 				1951176D196C9BCF00622136 /* Hex.m in Sources */,
+				19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */,
 				1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */,
+				19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */,
 				19511769196C9BCF00622136 /* EvoGameScene.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
