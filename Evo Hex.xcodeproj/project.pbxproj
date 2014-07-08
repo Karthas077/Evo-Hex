@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1951170C196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
+		1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170D196C9B7500622136 /* CoreGraphics.framework */; };
+		19511710196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
+		19511712196C9B7500622136 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19511711196C9B7500622136 /* SpriteKit.framework */; };
+		19511718196C9B7500622136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19511716196C9B7500622136 /* InfoPlist.strings */; };
+		1951171A196C9B7500622136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511719196C9B7500622136 /* main.m */; };
+		1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951171D196C9B7500622136 /* EvoAppDelegate.m */; };
+		19511721196C9B7500622136 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
+		19511724196C9B7500622136 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
+		19511727196C9B7500622136 /* EvoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511726196C9B7500622136 /* EvoViewController.m */; };
+		1951172E196C9B7500622136 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1951172D196C9B7500622136 /* Images.xcassets */; };
+		19511735196C9B7500622136 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19511734196C9B7500622136 /* XCTest.framework */; };
+		19511736196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
+		19511737196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
+		1951173F196C9B7500622136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1951173D196C9B7500622136 /* InfoPlist.strings */; };
+		19511741196C9B7500622136 /* Evo_HexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511740196C9B7500622136 /* Evo_HexTests.m */; };
+		19511761196C9BCF00622136 /* Grass_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951174C196C9BCF00622136 /* Grass_Hex.png */; };
+		19511762196C9BCF00622136 /* Grass_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1951174D196C9BCF00622136 /* Grass_Square.jpg */; };
+		19511763196C9BCF00622136 /* Mountain_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951174E196C9BCF00622136 /* Mountain_Hex.png */; };
+		19511764196C9BCF00622136 /* Mountain_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1951174F196C9BCF00622136 /* Mountain_Square.jpg */; };
+		19511765196C9BCF00622136 /* Sand_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 19511750196C9BCF00622136 /* Sand_Hex.png */; };
+		19511766196C9BCF00622136 /* Sand_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19511751196C9BCF00622136 /* Sand_Square.jpg */; };
+		19511767196C9BCF00622136 /* Water_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 19511752196C9BCF00622136 /* Water_Hex.png */; };
+		19511768196C9BCF00622136 /* Water_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19511753196C9BCF00622136 /* Water_Square.jpg */; };
+		19511769196C9BCF00622136 /* EvoGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511755196C9BCF00622136 /* EvoGameScene.m */; };
+		1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511757196C9BCF00622136 /* EvoMenuScene.m */; };
+		1951176B196C9BCF00622136 /* EvoUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511759196C9BCF00622136 /* EvoUI.m */; };
+		1951176C196C9BCF00622136 /* HexGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175B196C9BCF00622136 /* HexGrid.m */; };
+		1951176D196C9BCF00622136 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175D196C9BCF00622136 /* Hex.m */; };
+		1951176E196C9BCF00622136 /* SuperHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511760196C9BCF00622136 /* SuperHex.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		19511738196C9B7500622136 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19511700196C9B7500622136 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 19511707196C9B7500622136;
+			remoteInfo = "Evo Hex";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		19511708196C9B7500622136 /* Evo Hex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evo Hex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1951170B196C9B7500622136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1951170D196C9B7500622136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1951170F196C9B7500622136 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		19511711196C9B7500622136 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
+		19511715196C9B7500622136 /* Evo Hex-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evo Hex-Info.plist"; sourceTree = "<group>"; };
+		19511717196C9B7500622136 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		19511719196C9B7500622136 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1951171B196C9B7500622136 /* Evo Hex-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Evo Hex-Prefix.pch"; sourceTree = "<group>"; };
+		1951171C196C9B7500622136 /* EvoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvoAppDelegate.h; sourceTree = "<group>"; };
+		1951171D196C9B7500622136 /* EvoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EvoAppDelegate.m; sourceTree = "<group>"; };
+		19511720196C9B7500622136 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		19511723196C9B7500622136 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		19511725196C9B7500622136 /* EvoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EvoViewController.h; sourceTree = "<group>"; };
+		19511726196C9B7500622136 /* EvoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EvoViewController.m; sourceTree = "<group>"; };
+		1951172D196C9B7500622136 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		19511733196C9B7500622136 /* Evo HexTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Evo HexTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		19511734196C9B7500622136 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		1951173C196C9B7500622136 /* Evo HexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evo HexTests-Info.plist"; sourceTree = "<group>"; };
+		1951173E196C9B7500622136 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		19511740196C9B7500622136 /* Evo_HexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evo_HexTests.m; sourceTree = "<group>"; };
+		1951174C196C9BCF00622136 /* Grass_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grass_Hex.png; sourceTree = "<group>"; };
+		1951174D196C9BCF00622136 /* Grass_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Grass_Square.jpg; sourceTree = "<group>"; };
+		1951174E196C9BCF00622136 /* Mountain_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mountain_Hex.png; sourceTree = "<group>"; };
+		1951174F196C9BCF00622136 /* Mountain_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mountain_Square.jpg; sourceTree = "<group>"; };
+		19511750196C9BCF00622136 /* Sand_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sand_Hex.png; sourceTree = "<group>"; };
+		19511751196C9BCF00622136 /* Sand_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sand_Square.jpg; sourceTree = "<group>"; };
+		19511752196C9BCF00622136 /* Water_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water_Hex.png; sourceTree = "<group>"; };
+		19511753196C9BCF00622136 /* Water_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Water_Square.jpg; sourceTree = "<group>"; };
+		19511754196C9BCF00622136 /* EvoGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoGameScene.h; sourceTree = "<group>"; };
+		19511755196C9BCF00622136 /* EvoGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoGameScene.m; sourceTree = "<group>"; };
+		19511756196C9BCF00622136 /* EvoMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMenuScene.h; sourceTree = "<group>"; };
+		19511757196C9BCF00622136 /* EvoMenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoMenuScene.m; sourceTree = "<group>"; };
+		19511758196C9BCF00622136 /* EvoUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoUI.h; sourceTree = "<group>"; };
+		19511759196C9BCF00622136 /* EvoUI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoUI.m; sourceTree = "<group>"; };
+		1951175A196C9BCF00622136 /* HexGrid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexGrid.h; sourceTree = "<group>"; };
+		1951175B196C9BCF00622136 /* HexGrid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HexGrid.m; sourceTree = "<group>"; };
+		1951175C196C9BCF00622136 /* Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hex.h; sourceTree = "<group>"; };
+		1951175D196C9BCF00622136 /* Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hex.m; sourceTree = "<group>"; };
+		1951175E196C9BCF00622136 /* HexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexProtocol.h; sourceTree = "<group>"; };
+		1951175F196C9BCF00622136 /* SuperHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHex.h; sourceTree = "<group>"; };
+		19511760196C9BCF00622136 /* SuperHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHex.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		19511705196C9B7500622136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */,
+				19511710196C9B7500622136 /* UIKit.framework in Frameworks */,
+				19511712196C9B7500622136 /* SpriteKit.framework in Frameworks */,
+				1951170C196C9B7500622136 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19511730196C9B7500622136 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19511735196C9B7500622136 /* XCTest.framework in Frameworks */,
+				19511737196C9B7500622136 /* UIKit.framework in Frameworks */,
+				19511736196C9B7500622136 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		195116FF196C9B7500622136 = {
+			isa = PBXGroup;
+			children = (
+				19511713196C9B7500622136 /* Evo Hex */,
+				1951173A196C9B7500622136 /* Evo HexTests */,
+				1951170A196C9B7500622136 /* Frameworks */,
+				19511709196C9B7500622136 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		19511709196C9B7500622136 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19511708196C9B7500622136 /* Evo Hex.app */,
+				19511733196C9B7500622136 /* Evo HexTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1951170A196C9B7500622136 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1951170B196C9B7500622136 /* Foundation.framework */,
+				1951170D196C9B7500622136 /* CoreGraphics.framework */,
+				1951170F196C9B7500622136 /* UIKit.framework */,
+				19511711196C9B7500622136 /* SpriteKit.framework */,
+				19511734196C9B7500622136 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		19511713196C9B7500622136 /* Evo Hex */ = {
+			isa = PBXGroup;
+			children = (
+				1951174A196C9BCF00622136 /* Assets */,
+				19511754196C9BCF00622136 /* EvoGameScene.h */,
+				19511755196C9BCF00622136 /* EvoGameScene.m */,
+				19511756196C9BCF00622136 /* EvoMenuScene.h */,
+				19511757196C9BCF00622136 /* EvoMenuScene.m */,
+				19511758196C9BCF00622136 /* EvoUI.h */,
+				19511759196C9BCF00622136 /* EvoUI.m */,
+				1951175A196C9BCF00622136 /* HexGrid.h */,
+				1951175B196C9BCF00622136 /* HexGrid.m */,
+				1951175C196C9BCF00622136 /* Hex.h */,
+				1951175D196C9BCF00622136 /* Hex.m */,
+				1951175E196C9BCF00622136 /* HexProtocol.h */,
+				1951175F196C9BCF00622136 /* SuperHex.h */,
+				19511760196C9BCF00622136 /* SuperHex.m */,
+				1951171C196C9B7500622136 /* EvoAppDelegate.h */,
+				1951171D196C9B7500622136 /* EvoAppDelegate.m */,
+				1951171F196C9B7500622136 /* Main_iPhone.storyboard */,
+				19511722196C9B7500622136 /* Main_iPad.storyboard */,
+				19511725196C9B7500622136 /* EvoViewController.h */,
+				19511726196C9B7500622136 /* EvoViewController.m */,
+				1951172D196C9B7500622136 /* Images.xcassets */,
+				19511714196C9B7500622136 /* Supporting Files */,
+			);
+			path = "Evo Hex";
+			sourceTree = "<group>";
+		};
+		19511714196C9B7500622136 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				19511715196C9B7500622136 /* Evo Hex-Info.plist */,
+				19511716196C9B7500622136 /* InfoPlist.strings */,
+				19511719196C9B7500622136 /* main.m */,
+				1951171B196C9B7500622136 /* Evo Hex-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1951173A196C9B7500622136 /* Evo HexTests */ = {
+			isa = PBXGroup;
+			children = (
+				19511740196C9B7500622136 /* Evo_HexTests.m */,
+				1951173B196C9B7500622136 /* Supporting Files */,
+			);
+			path = "Evo HexTests";
+			sourceTree = "<group>";
+		};
+		1951173B196C9B7500622136 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1951173C196C9B7500622136 /* Evo HexTests-Info.plist */,
+				1951173D196C9B7500622136 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1951174A196C9BCF00622136 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1951174B196C9BCF00622136 /* Tiles */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		1951174B196C9BCF00622136 /* Tiles */ = {
+			isa = PBXGroup;
+			children = (
+				1951174C196C9BCF00622136 /* Grass_Hex.png */,
+				1951174D196C9BCF00622136 /* Grass_Square.jpg */,
+				1951174E196C9BCF00622136 /* Mountain_Hex.png */,
+				1951174F196C9BCF00622136 /* Mountain_Square.jpg */,
+				19511750196C9BCF00622136 /* Sand_Hex.png */,
+				19511751196C9BCF00622136 /* Sand_Square.jpg */,
+				19511752196C9BCF00622136 /* Water_Hex.png */,
+				19511753196C9BCF00622136 /* Water_Square.jpg */,
+			);
+			path = Tiles;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		19511707196C9B7500622136 /* Evo Hex */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19511744196C9B7500622136 /* Build configuration list for PBXNativeTarget "Evo Hex" */;
+			buildPhases = (
+				19511704196C9B7500622136 /* Sources */,
+				19511705196C9B7500622136 /* Frameworks */,
+				19511706196C9B7500622136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Evo Hex";
+			productName = "Evo Hex";
+			productReference = 19511708196C9B7500622136 /* Evo Hex.app */;
+			productType = "com.apple.product-type.application";
+		};
+		19511732196C9B7500622136 /* Evo HexTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 19511747196C9B7500622136 /* Build configuration list for PBXNativeTarget "Evo HexTests" */;
+			buildPhases = (
+				1951172F196C9B7500622136 /* Sources */,
+				19511730196C9B7500622136 /* Frameworks */,
+				19511731196C9B7500622136 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				19511739196C9B7500622136 /* PBXTargetDependency */,
+			);
+			name = "Evo HexTests";
+			productName = "Evo HexTests";
+			productReference = 19511733196C9B7500622136 /* Evo HexTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		19511700196C9B7500622136 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Evo;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+				TargetAttributes = {
+					19511707196C9B7500622136 = {
+						DevelopmentTeam = TVGP8Z5AV5;
+					};
+					19511732196C9B7500622136 = {
+						TestTargetID = 19511707196C9B7500622136;
+					};
+				};
+			};
+			buildConfigurationList = 19511703196C9B7500622136 /* Build configuration list for PBXProject "Evo Hex" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 195116FF196C9B7500622136;
+			productRefGroup = 19511709196C9B7500622136 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				19511707196C9B7500622136 /* Evo Hex */,
+				19511732196C9B7500622136 /* Evo HexTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		19511706196C9B7500622136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1951172E196C9B7500622136 /* Images.xcassets in Resources */,
+				19511762196C9BCF00622136 /* Grass_Square.jpg in Resources */,
+				19511724196C9B7500622136 /* Main_iPad.storyboard in Resources */,
+				19511721196C9B7500622136 /* Main_iPhone.storyboard in Resources */,
+				19511718196C9B7500622136 /* InfoPlist.strings in Resources */,
+				19511767196C9BCF00622136 /* Water_Hex.png in Resources */,
+				19511768196C9BCF00622136 /* Water_Square.jpg in Resources */,
+				19511764196C9BCF00622136 /* Mountain_Square.jpg in Resources */,
+				19511765196C9BCF00622136 /* Sand_Hex.png in Resources */,
+				19511763196C9BCF00622136 /* Mountain_Hex.png in Resources */,
+				19511766196C9BCF00622136 /* Sand_Square.jpg in Resources */,
+				19511761196C9BCF00622136 /* Grass_Hex.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		19511731196C9B7500622136 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1951173F196C9B7500622136 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		19511704196C9B7500622136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1951176B196C9BCF00622136 /* EvoUI.m in Sources */,
+				1951171A196C9B7500622136 /* main.m in Sources */,
+				1951176E196C9BCF00622136 /* SuperHex.m in Sources */,
+				1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */,
+				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
+				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
+				1951176D196C9BCF00622136 /* Hex.m in Sources */,
+				1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */,
+				19511769196C9BCF00622136 /* EvoGameScene.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1951172F196C9B7500622136 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19511741196C9B7500622136 /* Evo_HexTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		19511739196C9B7500622136 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 19511707196C9B7500622136 /* Evo Hex */;
+			targetProxy = 19511738196C9B7500622136 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		19511716196C9B7500622136 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19511717196C9B7500622136 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1951171F196C9B7500622136 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19511720196C9B7500622136 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		19511722196C9B7500622136 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19511723196C9B7500622136 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		1951173D196C9B7500622136 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1951173E196C9B7500622136 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		19511742196C9B7500622136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		19511743196C9B7500622136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		19511745196C9B7500622136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
+				INFOPLIST_FILE = "Evo Hex/Evo Hex-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		19511746196C9B7500622136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
+				INFOPLIST_FILE = "Evo Hex/Evo Hex-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		19511748196C9B7500622136 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Evo Hex.app/Evo Hex";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Evo HexTests/Evo HexTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		19511749196C9B7500622136 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Evo Hex.app/Evo Hex";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
+				INFOPLIST_FILE = "Evo HexTests/Evo HexTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		19511703196C9B7500622136 /* Build configuration list for PBXProject "Evo Hex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19511742196C9B7500622136 /* Debug */,
+				19511743196C9B7500622136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19511744196C9B7500622136 /* Build configuration list for PBXNativeTarget "Evo Hex" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19511745196C9B7500622136 /* Debug */,
+				19511746196C9B7500622136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		19511747196C9B7500622136 /* Build configuration list for PBXNativeTarget "Evo HexTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				19511748196C9B7500622136 /* Debug */,
+				19511749196C9B7500622136 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 19511700196C9B7500622136 /* Project object */;
+}

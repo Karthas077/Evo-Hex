@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7CC4B8F3-E892-4C07-B2B4-B05B80EEB349</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Evo Hex</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>784C8D83-F3F6-47C7-8314-2F74A437E448</key>
+		<string>https://github.com/Karthas077/Evo-Hex.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Evo Hex.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>784C8D83-F3F6-47C7-8314-2F74A437E448</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Karthas077/Evo-Hex.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>784C8D83-F3F6-47C7-8314-2F74A437E448</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>784C8D83-F3F6-47C7-8314-2F74A437E448</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Evo-Hex</string>
+		</dict>
+	</array>
+</dict>
+</plist>
