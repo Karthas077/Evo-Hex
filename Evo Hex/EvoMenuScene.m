@@ -16,7 +16,7 @@
     SKLabelNode *nameBanner = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
 
     nameBanner.name = @"banner";
-    nameBanner.text = @"Wannabe Rogue-like";
+    nameBanner.text = @"Evolution Hex";
     nameBanner.fontSize = 30;
     nameBanner.position =
         CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) + 60);
@@ -72,6 +72,9 @@
 }
 
 - (void)startGame:(NSNumber *)mode {
+    EvoDataManager *dataManager = [EvoDataManager dataManager];
+    [dataManager setModList:[[NSArray alloc] initWithObjects:[[dataManager appSupportPath] stringByAppendingPathComponent:@"Core"], nil] ];
+    /*
   _hasStarted = true;
 
   SKTransition *reveal =
@@ -80,7 +83,7 @@
 
   newScene.mode = mode;
 
-  [self.scene.view presentScene:newScene transition:reveal];
+  [self.scene.view presentScene:newScene transition:reveal];*/
 }
 
 - (void)update:(CFTimeInterval)currentTime {

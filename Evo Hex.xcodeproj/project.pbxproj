@@ -182,14 +182,14 @@
 				19F2A899196CE88100BDD56B /* EvoMaterial.m */,
 				19F2A895196CDA6300BDD56B /* EvoTissue.h */,
 				19F2A896196CDA6300BDD56B /* EvoTissue.m */,
-				19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */,
-				19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */,
 				19F2A89B196D229600BDD56B /* EvoCreatureFunction.h */,
 				19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */,
-				19F2A88E196CA5B400BDD56B /* EvoCreature.h */,
-				19F2A88F196CA5B400BDD56B /* EvoCreature.m */,
+				19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */,
+				19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */,
 				19F2A890196CA5B400BDD56B /* EvoEvolution.h */,
 				19F2A891196CA5B400BDD56B /* EvoEvolution.m */,
+				19F2A88E196CA5B400BDD56B /* EvoCreature.h */,
+				19F2A88F196CA5B400BDD56B /* EvoCreature.m */,
 				19511754196C9BCF00622136 /* EvoGameScene.h */,
 				19511755196C9BCF00622136 /* EvoGameScene.m */,
 				19511756196C9BCF00622136 /* EvoMenuScene.h */,
@@ -251,6 +251,7 @@
 		1951174A196C9BCF00622136 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				19F2A8AA196D59D300BDD56B /* Data */,
 				1951174B196C9BCF00622136 /* Tiles */,
 			);
 			path = Assets;
@@ -269,6 +270,21 @@
 				19511753196C9BCF00622136 /* Water_Square.jpg */,
 			);
 			path = Tiles;
+			sourceTree = "<group>";
+		};
+		19F2A8AA196D59D300BDD56B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				19F2A8AB196D59D300BDD56B /* Core */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		19F2A8AB196D59D300BDD56B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

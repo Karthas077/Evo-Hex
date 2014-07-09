@@ -13,12 +13,7 @@
 
 @synthesize activeMods;
 @synthesize appSupportPath;
-@synthesize materialsPath;
-@synthesize tissuesPath;
-@synthesize bodyPartsPath;
-@synthesize functionsPath;
-@synthesize creaturesPath;
-@synthesize evolutionsPath;
+@synthesize gameDataPath;
 
 #pragma mark Singleton Methods
 
@@ -37,20 +32,10 @@
     self = [super init];
     if (self) {
         appSupportPath = [[NSString alloc] init];
-        materialsPath = [[NSString alloc] init];
-        tissuesPath = [[NSString alloc] init];
-        bodyPartsPath = [[NSString alloc] init];
-        functionsPath = [[NSString alloc] init];
-        creaturesPath = [[NSString alloc] init];
-        evolutionsPath = [[NSString alloc] init];
+        gameDataPath = [[NSString alloc] init];
         
         appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) lastObject];
-        materialsPath = [appSupportPath stringByAppendingPathComponent:@"materials"];
-        tissuesPath = [appSupportPath stringByAppendingPathComponent:@"tissues"];
-        bodyPartsPath = [appSupportPath stringByAppendingPathComponent:@"bodyParts"];
-        functionsPath = [appSupportPath stringByAppendingPathComponent:@"functions"];
-        creaturesPath = [appSupportPath stringByAppendingPathComponent:@"creatures"];
-        evolutionsPath = [appSupportPath stringByAppendingPathComponent:@"evolutions"];
+        gameDataPath = [appSupportPath stringByAppendingPathComponent:@"Data"];
     }
     return self;
 }
@@ -73,35 +58,12 @@
             }
         }
     }
-    if (![fileManager fileExistsAtPath:materialsPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"materials"] toPath:materialsPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
-    }
-    if (![fileManager fileExistsAtPath:tissuesPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"tissues"] toPath:tissuesPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
-    }
-    if (![fileManager fileExistsAtPath:bodyPartsPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"bodyParts"] toPath:bodyPartsPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
-    }
-    if (![fileManager fileExistsAtPath:functionsPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"functions"] toPath:functionsPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
-    }
-    if (![fileManager fileExistsAtPath:creaturesPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"creatures"] toPath:creaturesPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
-    }
-    if (![fileManager fileExistsAtPath:evolutionsPath isDirectory:NULL] ||
-        ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"evolutions"] toPath:evolutionsPath error:&error]) {
-        NSLog(@"%@", error.localizedDescription);
-        return NO;
+    for (NSString *file in [self getModuleData:@"Core"]) {
+        if (![fileManager fileExistsAtPath:file isDirectory:NULL] ||
+            ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:[file lastPathComponent]] toPath:file error:&error]) {
+            NSLog(@"%@", error.localizedDescription);
+            return NO;
+        }
     }
     return YES;
 }
@@ -111,17 +73,31 @@
     activeMods = modList;
 }
 
+- (NSArray *) getModuleData:(NSString *)moduleName
+{
+    NSString *modulePath = [gameDataPath stringByAppendingPathComponent:moduleName];
+    NSString *materialsPath = [modulePath stringByAppendingPathComponent:@"materials"];
+    NSString *tissuesPath = [modulePath stringByAppendingPathComponent:@"tissues"];
+    NSString *functionsPath = [modulePath stringByAppendingPathComponent:@"functions"];
+    NSString *bodyPartsPath = [modulePath stringByAppendingPathComponent:@"bodyParts"];
+    NSString *evolutionsPath = [modulePath stringByAppendingPathComponent:@"evolutions"];
+    NSString *creaturesPath = [modulePath stringByAppendingPathComponent:@"creatures"];
+    
+    return [[NSArray alloc] initWithObjects:materialsPath, tissuesPath, functionsPath, bodyPartsPath, evolutionsPath, creaturesPath, nil];
+}
+
 - (NSArray *) loadMaterials
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableArray *materials = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:materialsPath];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
     
     NSString *file;
     while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
+        if ([@"materials" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [materials addObject:[self parseMaterial: [materialsPath stringByAppendingPathComponent:file]]];
+            [materials addObject:[self parseMaterial: [[gameDataPath stringByAppendingPathComponent:@"materials"] stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -137,13 +113,14 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableArray *tissues = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:tissuesPath];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
     
     NSString *file;
     while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
+        if ([@"tissues" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [tissues addObject:[self parseTissue: [tissuesPath stringByAppendingPathComponent:file]]];
+            [tissues addObject:[self parseTissue: [[gameDataPath stringByAppendingPathComponent:@"tissues"] stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -159,13 +136,14 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableArray *bodyParts = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:bodyPartsPath];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
     
     NSString *file;
     while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
+        if ([@"bodyParts" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [bodyParts addObject:[self parseBodyPart: [bodyPartsPath stringByAppendingPathComponent:file]]];
+            [bodyParts addObject:[self parseBodyPart: [[gameDataPath stringByAppendingPathComponent:@"bodyParts"] stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -181,13 +159,14 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableArray *functions = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:functionsPath];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
     
     NSString *file;
     while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
+        if ([@"functions" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [functions addObject:[self parseCreatureFunction: [functionsPath stringByAppendingPathComponent:file]]];
+            [functions addObject:[self parseCreatureFunction: [[gameDataPath stringByAppendingPathComponent:@"functions"] stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -199,39 +178,18 @@
     return [[EvoCreatureFunction alloc] init];
 }
 
-- (NSArray *) loadCreatures
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSMutableArray *creatures = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:creaturesPath];
-    
-    NSString *file;
-    while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
-            [[file pathExtension] isEqualToString: @"dat"]) {
-            [creatures addObject:[self parseCreature: [creaturesPath stringByAppendingPathComponent:file]]];
-        }
-    }
-    
-    return [creatures copy];
-}
-
-- (EvoCreature *) parseCreature:(NSString *) file
-{
-    return [[EvoCreature alloc] init];
-}
-
 - (NSArray *) loadEvolutions
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSMutableArray *evolutions = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:evolutionsPath];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
     
     NSString *file;
     while ((file = [dirEnum nextObject])) {
-        if ([activeMods containsObject:[file stringByDeletingLastPathComponent]] &&
+        if ([@"evolutions" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [evolutions addObject:[self parseEvolution: [evolutionsPath stringByAppendingPathComponent:file]]];
+            [evolutions addObject:[self parseEvolution: [[gameDataPath stringByAppendingPathComponent:@"evolutions"] stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -241,6 +199,29 @@
 - (EvoEvolution *) parseEvolution:(NSString *) file
 {
     return [[EvoEvolution alloc] init];
+}
+
+- (NSArray *) loadCreatures
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSMutableArray *creatures = [[NSMutableArray alloc]init];
+    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
+    
+    NSString *file;
+    while ((file = [dirEnum nextObject])) {
+        if ([@"creatures" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
+            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
+            [[file pathExtension] isEqualToString: @"dat"]) {
+            [creatures addObject:[self parseCreature: [[gameDataPath stringByAppendingPathComponent:@"creatures"] stringByAppendingPathComponent:file]]];
+        }
+    }
+    
+    return [creatures copy];
+}
+
+- (EvoCreature *) parseCreature:(NSString *) file
+{
+    return [[EvoCreature alloc] init];
 }
 
 @end

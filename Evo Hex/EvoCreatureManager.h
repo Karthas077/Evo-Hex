@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EvoCreature.h"
+#import "EvoDataManager.h"
 
 @interface EvoCreatureManager : NSObject
+
+@property NSArray *materials;
+@property NSArray *tissues;
+@property NSArray *creatureFunctions;
+@property NSArray *bodyParts;
+@property NSArray *evolutions;
+@property NSMutableArray *creatures;
 
 @end
