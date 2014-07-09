@@ -9,12 +9,13 @@
 #import <SpriteKit/SpriteKit.h>
 #import "EvoBodyPart.h"
 #import "EvoEvolution.h"
+#import "EvoCreatureFunction.h"
 
 @interface EvoCreature : SKSpriteNode
 
 @property NSString *name;
 @property NSUInteger creatureID;
-@property NSUInteger nextID;
+@property EvoBodyPart *core;
 @property NSHashTable *bodyParts;
 @property NSHashTable *evolutions;
 

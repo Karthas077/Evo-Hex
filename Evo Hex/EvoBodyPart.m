@@ -11,55 +11,53 @@
 
 @implementation EvoBodyPart
 
-- (EvoBodyPart *) initFromFile:(NSString *) file
+- (EvoBodyPart *) initWithID:(NSUInteger)ID fromFile:(NSString *)file
 {
     self = [super init];
     if (self) {
-        _bodyParts = [NSHashTable weakObjectsHashTable];
+        _attachedParts = [NSHashTable weakObjectsHashTable];
+        _tissues = [[NSMutableArray alloc] init];
+        _ID = ID;
         _damage = 0;
     }
     return self;
 }
 
-- (void) attachToCreature:(EvoCreature *)creature
+
+- (void) addTissue:(EvoTissue *)tissue
 {
-    _creature = creature;
-    [_creature setMass:[_creature mass]+_mass];
-    [_creature setVolume:[_creature volume]+_volume];
+    _mass += [tissue getMass];
+    _volume += [tissue volume];
+    [_tissues addObject:tissue];
 }
 
-- (void) remove
+- (void) removeTissue:(EvoTissue *)tissue
 {
-    for (EvoBodyPart *part in [_bodyParts allObjects]) {
-        [part remove];
+    if ([_tissues containsObject:tissue]) {
+        _mass -= [tissue getMass];
+        _volume -= [tissue volume];
+        [_tissues removeObject:tissue];
     }
-    
-    [_creature setMass:[_creature mass]-_mass];
-    [_creature setVolume:[_creature volume]-_volume];
-    
-    //weak property so this shouldn't be needed
-    //_creature = nil;
 }
 
-- (void) attachPart:(EvoBodyPart *) part
+- (void) attachToPart:(EvoBodyPart *) part
 {
-    [_bodyParts addObject:part];
-    [_creature attachPart:part];
-    for (EvoBodyPart *subPart in [[part bodyParts] allObjects]) {
-        [_bodyParts addObject:subPart];
+    //[_creature attachPart:part];
+    [_attachedParts addObject:part];
+    for (EvoBodyPart *subPart in [[part attachedParts] allObjects]) {
         [_creature attachPart:subPart];
     }
-    [part setParent:self];
+    //[part setParent:self];
 }
 
-- (void) removePart:(EvoBodyPart *) part
+- (void) detachFromPart:(EvoBodyPart *) part
 {
     [_creature removePart:part];
     
     //OtherFunctionality Here
     
     //weak hashtable so this shouldn't be needed. This will probably never even be called
-    //[_bodyParts removeObject:part];
+    //[_attachedParts removeObject:part];
 }
 
 - (void) updatePart
@@ -86,11 +84,11 @@
 - (CGFloat) getCumulativeDamage
 {
     CGFloat total_mass = _mass;
-    for (EvoBodyPart *part in [_bodyParts allObjects]) {
+    for (EvoBodyPart *part in [_attachedParts allObjects]) {
         total_mass += [part mass];
     }
     CGFloat total_damage = (_mass/total_mass) * _damage;
-    for (EvoBodyPart *part in [_bodyParts allObjects]) {
+    for (EvoBodyPart *part in [_attachedParts allObjects]) {
         total_damage += ([part mass]/total_mass) * [part damage];
     }
     return total_damage;
@@ -102,7 +100,7 @@
     if (_damage >= 1.0) {
         [_creature removePart:self];
     }
-    [_parent updatePart];
+    //[_parent updatePart];
 }
 
 - (void) setVolume:(CGFloat)volume
@@ -122,10 +120,7 @@
 
 - (NSUInteger) hash
 {
-    if (_creature) {
-        return ([_creature creatureID] << sizeof(NSUInteger)*4)+_ID;
-    }
-    return 0;
+    return _ID;
 }
 
 @end

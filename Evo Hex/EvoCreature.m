@@ -17,7 +17,6 @@
         _bodyParts = [[NSHashTable alloc] init];
         _evolutions = [[NSHashTable alloc] init];
         _creatureID = ID;
-        _nextID = 1;
         
     }
     return self;
@@ -25,15 +24,13 @@
 
 - (void) attachPart:(EvoBodyPart *) part
 {
-    [part setID:_nextID];
-    [part attachToCreature:self];
+    [part attachToPart:_core];
     [_bodyParts addObject:part];
-    _nextID++;
 }
 
 - (void) removePart:(EvoBodyPart *) part
 {
-    [part remove];
+    [part detachFromPart:_core];
     [_bodyParts removeObject:part];
 }
 
@@ -47,6 +44,11 @@
 {
     [evolution removeFromCreature];
     [_evolutions removeObject:evolution];
+}
+
+- (NSUInteger) hash
+{
+    return _creatureID;
 }
 
 

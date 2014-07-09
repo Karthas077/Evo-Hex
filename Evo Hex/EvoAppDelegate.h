@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EvoDataManager.h"
 
 @interface EvoAppDelegate : UIResponder <UIApplicationDelegate>
 

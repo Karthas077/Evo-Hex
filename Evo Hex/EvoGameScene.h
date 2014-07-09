@@ -1,6 +1,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 #import "HexGrid.h"
+#import "EvoCreatureManager.h"
 #import "EvoUI.h"
 
 @interface EvoGameScene : SKScene

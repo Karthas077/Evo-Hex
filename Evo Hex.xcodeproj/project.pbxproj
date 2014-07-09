@@ -40,6 +40,11 @@
 		19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */; };
 		19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88F196CA5B400BDD56B /* EvoCreature.m */; };
 		19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A891196CA5B400BDD56B /* EvoEvolution.m */; };
+		19F2A897196CDA6300BDD56B /* EvoTissue.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A896196CDA6300BDD56B /* EvoTissue.m */; };
+		19F2A89A196CE88100BDD56B /* EvoMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A899196CE88100BDD56B /* EvoMaterial.m */; };
+		19F2A89D196D229600BDD56B /* EvoCreatureFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */; };
+		19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */; };
+		19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8A8196D300500BDD56B /* EvoDataManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +106,16 @@
 		19F2A88F196CA5B400BDD56B /* EvoCreature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreature.m; sourceTree = "<group>"; };
 		19F2A890196CA5B400BDD56B /* EvoEvolution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoEvolution.h; sourceTree = "<group>"; };
 		19F2A891196CA5B400BDD56B /* EvoEvolution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoEvolution.m; sourceTree = "<group>"; };
+		19F2A895196CDA6300BDD56B /* EvoTissue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoTissue.h; sourceTree = "<group>"; };
+		19F2A896196CDA6300BDD56B /* EvoTissue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoTissue.m; sourceTree = "<group>"; };
+		19F2A898196CE88100BDD56B /* EvoMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMaterial.h; sourceTree = "<group>"; };
+		19F2A899196CE88100BDD56B /* EvoMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoMaterial.m; sourceTree = "<group>"; };
+		19F2A89B196D229600BDD56B /* EvoCreatureFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreatureFunction.h; sourceTree = "<group>"; };
+		19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreatureFunction.m; sourceTree = "<group>"; };
+		19F2A89E196D230F00BDD56B /* EvoCreatureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreatureManager.h; sourceTree = "<group>"; };
+		19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreatureManager.m; sourceTree = "<group>"; };
+		19F2A8A7196D300500BDD56B /* EvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoDataManager.h; sourceTree = "<group>"; };
+		19F2A8A8196D300500BDD56B /* EvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoDataManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,17 +177,25 @@
 		19511713196C9B7500622136 /* Evo Hex */ = {
 			isa = PBXGroup;
 			children = (
+				1951174A196C9BCF00622136 /* Assets */,
+				19F2A898196CE88100BDD56B /* EvoMaterial.h */,
+				19F2A899196CE88100BDD56B /* EvoMaterial.m */,
+				19F2A895196CDA6300BDD56B /* EvoTissue.h */,
+				19F2A896196CDA6300BDD56B /* EvoTissue.m */,
 				19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */,
 				19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */,
+				19F2A89B196D229600BDD56B /* EvoCreatureFunction.h */,
+				19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */,
 				19F2A88E196CA5B400BDD56B /* EvoCreature.h */,
 				19F2A88F196CA5B400BDD56B /* EvoCreature.m */,
 				19F2A890196CA5B400BDD56B /* EvoEvolution.h */,
 				19F2A891196CA5B400BDD56B /* EvoEvolution.m */,
-				1951174A196C9BCF00622136 /* Assets */,
 				19511754196C9BCF00622136 /* EvoGameScene.h */,
 				19511755196C9BCF00622136 /* EvoGameScene.m */,
 				19511756196C9BCF00622136 /* EvoMenuScene.h */,
 				19511757196C9BCF00622136 /* EvoMenuScene.m */,
+				19F2A89E196D230F00BDD56B /* EvoCreatureManager.h */,
+				19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */,
 				19511758196C9BCF00622136 /* EvoUI.h */,
 				19511759196C9BCF00622136 /* EvoUI.m */,
 				1951175A196C9BCF00622136 /* HexGrid.h */,
@@ -182,6 +205,8 @@
 				1951175E196C9BCF00622136 /* HexProtocol.h */,
 				1951175F196C9BCF00622136 /* SuperHex.h */,
 				19511760196C9BCF00622136 /* SuperHex.m */,
+				19F2A8A7196D300500BDD56B /* EvoDataManager.h */,
+				19F2A8A8196D300500BDD56B /* EvoDataManager.m */,
 				1951171C196C9B7500622136 /* EvoAppDelegate.h */,
 				1951171D196C9B7500622136 /* EvoAppDelegate.m */,
 				1951171F196C9B7500622136 /* Main_iPhone.storyboard */,
@@ -358,16 +383,21 @@
 			files = (
 				1951176B196C9BCF00622136 /* EvoUI.m in Sources */,
 				19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */,
+				19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */,
 				1951171A196C9B7500622136 /* main.m in Sources */,
 				1951176E196C9BCF00622136 /* SuperHex.m in Sources */,
 				1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */,
+				19F2A89A196CE88100BDD56B /* EvoMaterial.m in Sources */,
 				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
 				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
 				1951176D196C9BCF00622136 /* Hex.m in Sources */,
+				19F2A89D196D229600BDD56B /* EvoCreatureFunction.m in Sources */,
 				19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */,
 				1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */,
 				19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */,
+				19F2A897196CDA6300BDD56B /* EvoTissue.m in Sources */,
 				19511769196C9BCF00622136 /* EvoGameScene.m in Sources */,
+				19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

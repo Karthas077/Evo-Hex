@@ -7,14 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EvoTissue.h"
 @class EvoCreature;
 
 @interface EvoBodyPart : NSObject
 
 @property NSUInteger ID;
 @property (weak) EvoCreature *creature;
-@property NSHashTable *bodyParts;
-@property (weak) EvoBodyPart *parent;
+@property NSMutableArray *tissues;
+@property NSHashTable *attachedParts;
 
 @property Boolean isFunctional;
 @property (nonatomic) CGFloat damage;
@@ -22,11 +23,11 @@
 @property (nonatomic) CGFloat volume;
 
 
--(EvoBodyPart *) initFromFile:(NSString *)file;
--(void) attachToCreature:(EvoCreature *)creature;
--(void) remove;
--(void) attachPart:(EvoBodyPart *)part;
--(void) removePart:(EvoBodyPart *)part;
+-(EvoBodyPart *) initWithID:(NSUInteger)ID fromFile:(NSString *)file;
+-(void) addTissue:(EvoTissue *)tissue;
+-(void) removeTissue:(EvoTissue *)tissue;
+-(void) attachToPart:(EvoBodyPart *)part;
+-(void) detachFromPart:(EvoBodyPart *)part;
 -(void) updatePart;
 -(CGFloat) getCumulativeDamage;
 
