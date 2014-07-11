@@ -21,6 +21,20 @@
             _density = 1900; //kg/m^3
         }
         
+        _state = [[data objectForKey:@"state"] stringValue];
+        if (!_state) {
+            _state = @"solid";
+        }
+        
+        _heatDamagePoint = [[data objectForKey:@"heatDamagePoint"] doubleValue];
+        if (!_heatDamagePoint) {
+            _heatDamagePoint = 0;
+        }
+        _coldDamagePoint = [[data objectForKey:@"coldDamagePoint"] doubleValue];
+        if (!_coldDamagePoint) {
+            _coldDamagePoint = 0;
+        }
+        
         //E = 2*G*(1+nu) = 3*K*(1-2*nu)
         _bulkModulus = [[data objectForKey:@"bulkModulus"] doubleValue];
         if (!_bulkModulus) {

@@ -15,6 +15,10 @@
 
 //Physical Properties
 @property CGFloat density;
+@property NSString *state;
+@property CGFloat heatDamagePoint;
+@property CGFloat coldDamagePoint;
+
 
 @property CGFloat bulkModulus; //Compressability of fluids  Bulk Modulus = Youngs * (1-2*Poisson)/3
 @property CGFloat shearModulus; // YoungsModulus / 2*(1+Poisson)

@@ -9,7 +9,7 @@
 @property NSNumber *mode;
 //@property (nonatomic, readonly) NSMutableArray *layers;
 @property SKNode *world;
-//@property EvoCharacter *player;
+@property EvoCreature *player;
 @property HexGrid *map;
 @property EvoUI *ui;
 

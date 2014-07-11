@@ -19,12 +19,12 @@
 
 -(void) setAnchorPoint:(CGPoint)anchorPoint
 {
-  return;
+    return;
 }
 
 -(void) setPosition:(CGPoint)position
 {
-  [super setPosition:position];
+    [super setPosition:position];
 }
 
 -(void) setGridLoc:(CGPoint)gridLoc

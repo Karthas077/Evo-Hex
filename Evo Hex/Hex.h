@@ -20,6 +20,7 @@ static NSString * const hexTextures[] =
 
 @property (nonatomic) CGPoint gridLoc;
 @property (nonatomic) NSInteger type;
+@property SKSpriteNode *contents;
 @property NSInteger x;
 @property NSInteger y;
 @property NSInteger z;

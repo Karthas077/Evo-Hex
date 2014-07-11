@@ -20,39 +20,41 @@
 @property CGFloat regenLimit; //Minimum damage value after healing
 @property CGFloat regenLimitFactor; //% recovery
 
+@property CGFloat matTempDamage; //Damage per degree
+@property CGFloat functionalTemp;
+@property CGFloat tempRange;
+
 @property NSDictionary *data;
 
 
-@property Boolean connective;
 @property Boolean functional;
+@property Boolean connective;
 @property Boolean structural;
 
-//Cardiovascular System
-@property Boolean respirative;
-@property Boolean vascular;
+//Circulatory System
 @property CGFloat fluidPressure; //Rate of blood/fluid loss
 @property EvoTissue *contains;
 
+//Respiratory System
+
 //Nervous System
-@property Boolean nervous; //Enables connected functional parts
 @property Boolean cognitive; //Ganglions etc.
 @property CGFloat painCoefficient; //Damage to pain ratio
 
+//Endocrine System
+
+//Lymphatic System
+
 //Digestive System
-@property Boolean digestive;
-@property Boolean energyStore;
-@property CGFloat energyMassRatio;
 
 //Muscular System
-@property Boolean muscular;
 @property CGFloat strengthVolumeRatio;
 
-//Skeletal System
+//Skeletal System (bones cartilage ligaments tendons)
 
-
-//Integumentary System
-
-
+//Integumentary System (skin hair fat nails)
+@property Boolean energyStore;
+@property CGFloat energyMassRatio;
 
 //Functions:
 //Senses -
@@ -74,12 +76,6 @@
 //Breathe
 //Defication
 //Reproduction
-
-@property Boolean insulation;
-@property Boolean pattern;
-@property NSString *tissueShape;
-@property EvoTissue *parent;
-@property NSString *tissueMatState;
 
 - (EvoTissue *) initFromFile:(NSString *) file;
 - (CGFloat) getDensity;

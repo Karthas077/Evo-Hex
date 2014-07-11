@@ -7,14 +7,17 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "EvoObject.h"
 #import "EvoBodyPart.h"
 #import "EvoEvolution.h"
 #import "EvoCreatureFunction.h"
 
-@interface EvoCreature : SKSpriteNode
+@interface EvoCreature : EvoObject
 
 @property NSString *name;
 @property NSUInteger creatureID;
+@property Hex *hex;
+@property CGFloat health;
 @property EvoBodyPart *core;
 @property NSHashTable *bodyParts;
 @property NSHashTable *evolutions;

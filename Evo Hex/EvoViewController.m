@@ -13,25 +13,25 @@
 
 - (void)viewWillLayoutSubviews
 {
-  [super viewWillLayoutSubviews];
-  
-  // Configure the view.
-  SKView * skView = (SKView *)self.view;
-  skView.showsDrawCount = YES;
-  skView.showsFPS = YES;
-  skView.showsNodeCount = YES;
-  
-  if (!skView.scene) {
-    // Create and configure the scene.
-    SKScene * scene = [EvoMenuScene sceneWithSize:skView.bounds.size];
-    scene.scaleMode = SKSceneScaleModeAspectFill;
+    [super viewWillLayoutSubviews];
     
-    // Present the scene.
-    [skView presentScene:scene];
-  }
-  else {
-    skView.scene.size = skView.bounds.size;
-  }
+    // Configure the view.
+    SKView * skView = (SKView *)self.view;
+    skView.showsDrawCount = YES;
+    skView.showsFPS = YES;
+    skView.showsNodeCount = YES;
+    
+    if (!skView.scene) {
+        // Create and configure the scene.
+        SKScene * scene = [EvoMenuScene sceneWithSize:skView.bounds.size];
+        scene.scaleMode = SKSceneScaleModeAspectFill;
+        
+        // Present the scene.
+        [skView presentScene:scene];
+    }
+    else {
+        skView.scene.size = skView.bounds.size;
+    }
 }
 
 - (BOOL)shouldAutorotate

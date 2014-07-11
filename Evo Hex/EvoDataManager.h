@@ -19,11 +19,13 @@
 @property (nonatomic, retain) NSString *appSupportPath;
 @property (nonatomic, retain) NSString *gameDataPath;
 
+
 + (id) dataManager;
 - (BOOL) setupDirectories;
 
 - (void) setModList:(NSArray *)modList;
 
+- (BOOL) setupModules;
 - (NSArray *) getModuleData:(NSString *)moduleName;
 
 - (NSArray *) loadMaterials;

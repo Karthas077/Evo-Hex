@@ -11,8 +11,8 @@
 @interface EvoUI : SKNode
 
 @property SKSpriteNode *healthBar;
-@property SKSpriteNode *manaBar;
-@property SKSpriteNode *fatigueBar;
+@property SKSpriteNode *hungerBar;
+@property SKSpriteNode *energyBar;
 
 - (EvoUI *) initWithSize:(CGSize)size;
 

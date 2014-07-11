@@ -14,8 +14,6 @@
 		19511718196C9B7500622136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19511716196C9B7500622136 /* InfoPlist.strings */; };
 		1951171A196C9B7500622136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511719196C9B7500622136 /* main.m */; };
 		1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951171D196C9B7500622136 /* EvoAppDelegate.m */; };
-		19511721196C9B7500622136 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
-		19511724196C9B7500622136 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
 		19511727196C9B7500622136 /* EvoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511726196C9B7500622136 /* EvoViewController.m */; };
 		1951172E196C9B7500622136 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1951172D196C9B7500622136 /* Images.xcassets */; };
 		19511735196C9B7500622136 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19511734196C9B7500622136 /* XCTest.framework */; };
@@ -45,6 +43,11 @@
 		19F2A89D196D229600BDD56B /* EvoCreatureFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */; };
 		19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */; };
 		19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8A8196D300500BDD56B /* EvoDataManager.m */; };
+		19F2A8AE196F802F00BDD56B /* Gorilla_Sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */; };
+		19F2A8B2196F82E100BDD56B /* EvoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8B1196F82E100BDD56B /* EvoObject.m */; };
+		19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
+		19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
+		19F2A8F8196FA47D00BDD56B /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 19F2A8F7196FA47D00BDD56B /* Data */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,12 @@
 		19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreatureManager.m; sourceTree = "<group>"; };
 		19F2A8A7196D300500BDD56B /* EvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoDataManager.h; sourceTree = "<group>"; };
 		19F2A8A8196D300500BDD56B /* EvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoDataManager.m; sourceTree = "<group>"; };
+		19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gorilla_Sprite.png; path = Sprites/Gorilla_Sprite.png; sourceTree = "<group>"; };
+		19F2A8B0196F82E100BDD56B /* EvoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoObject.h; sourceTree = "<group>"; };
+		19F2A8B1196F82E100BDD56B /* EvoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoObject.m; sourceTree = "<group>"; };
+		19F2A8EE196FA3D900BDD56B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		19F2A8F0196FA3DC00BDD56B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		19F2A8F7196FA47D00BDD56B /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +186,7 @@
 		19511713196C9B7500622136 /* Evo Hex */ = {
 			isa = PBXGroup;
 			children = (
+				19F2A8F7196FA47D00BDD56B /* Data */,
 				1951174A196C9BCF00622136 /* Assets */,
 				19F2A898196CE88100BDD56B /* EvoMaterial.h */,
 				19F2A899196CE88100BDD56B /* EvoMaterial.m */,
@@ -190,6 +200,8 @@
 				19F2A891196CA5B400BDD56B /* EvoEvolution.m */,
 				19F2A88E196CA5B400BDD56B /* EvoCreature.h */,
 				19F2A88F196CA5B400BDD56B /* EvoCreature.m */,
+				19F2A8B0196F82E100BDD56B /* EvoObject.h */,
+				19F2A8B1196F82E100BDD56B /* EvoObject.m */,
 				19511754196C9BCF00622136 /* EvoGameScene.h */,
 				19511755196C9BCF00622136 /* EvoGameScene.m */,
 				19511756196C9BCF00622136 /* EvoMenuScene.h */,
@@ -251,7 +263,7 @@
 		1951174A196C9BCF00622136 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				19F2A8AA196D59D300BDD56B /* Data */,
+				19F2A8AF196F803400BDD56B /* Sprites */,
 				1951174B196C9BCF00622136 /* Tiles */,
 			);
 			path = Assets;
@@ -272,19 +284,12 @@
 			path = Tiles;
 			sourceTree = "<group>";
 		};
-		19F2A8AA196D59D300BDD56B /* Data */ = {
+		19F2A8AF196F803400BDD56B /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				19F2A8AB196D59D300BDD56B /* Core */,
+				19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */,
 			);
-			path = Data;
-			sourceTree = "<group>";
-		};
-		19F2A8AB196D59D300BDD56B /* Core */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Core;
+			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +372,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */,
+				19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */,
 				1951172E196C9B7500622136 /* Images.xcassets in Resources */,
 				19511762196C9BCF00622136 /* Grass_Square.jpg in Resources */,
-				19511724196C9B7500622136 /* Main_iPad.storyboard in Resources */,
-				19511721196C9B7500622136 /* Main_iPhone.storyboard in Resources */,
 				19511718196C9B7500622136 /* InfoPlist.strings in Resources */,
+				19F2A8AE196F802F00BDD56B /* Gorilla_Sprite.png in Resources */,
+				19F2A8F8196FA47D00BDD56B /* Data in Resources */,
 				19511767196C9BCF00622136 /* Water_Hex.png in Resources */,
 				19511768196C9BCF00622136 /* Water_Square.jpg in Resources */,
 				19511764196C9BCF00622136 /* Mountain_Square.jpg in Resources */,
@@ -412,6 +419,7 @@
 				1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */,
 				19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */,
 				19F2A897196CDA6300BDD56B /* EvoTissue.m in Sources */,
+				19F2A8B2196F82E100BDD56B /* EvoObject.m in Sources */,
 				19511769196C9BCF00622136 /* EvoGameScene.m in Sources */,
 				19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */,
 			);
@@ -448,6 +456,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				19511720196C9B7500622136 /* Base */,
+				19F2A8EE196FA3D900BDD56B /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -456,6 +465,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				19511723196C9B7500622136 /* Base */,
+				19F2A8F0196FA3DC00BDD56B /* en */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";

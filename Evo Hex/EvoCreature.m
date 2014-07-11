@@ -12,12 +12,12 @@
 
 - (EvoCreature *) initWithID:(NSUInteger) ID
 {
-    self = [super init];
+    self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Gorilla_Sprite.png"]];
     if (self) {
         _bodyParts = [[NSHashTable alloc] init];
         _evolutions = [[NSHashTable alloc] init];
         _creatureID = ID;
-        
+        _health = 100;
     }
     return self;
 }

@@ -32,9 +32,9 @@
     self = [super init];
     if (self) {
         appSupportPath = [[NSString alloc] init];
-        gameDataPath = [[NSString alloc] init];
         
         appSupportPath = [NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES) lastObject];
+        
         gameDataPath = [appSupportPath stringByAppendingPathComponent:@"Data"];
     }
     return self;
@@ -46,7 +46,7 @@
     NSError *error = nil;
     if (![fileManager fileExistsAtPath:appSupportPath isDirectory:NULL]) {
         if (![fileManager createDirectoryAtPath:appSupportPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-            NSLog(@"%@", error.localizedDescription);
+            NSLog(@"1 %@", error.localizedDescription);
             return NO;
         }
         else {
@@ -55,13 +55,13 @@
                                 forKey:NSURLIsExcludedFromBackupKey
                                  error:&error]) {
                 NSLog(@"Error excluding %@ from backup %@", [url lastPathComponent], error.localizedDescription);
+                return NO;
             }
         }
     }
-    for (NSString *file in [self getModuleData:@"Core"]) {
-        if (![fileManager fileExistsAtPath:file isDirectory:NULL] ||
-            ![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:[file lastPathComponent]] toPath:file error:&error]) {
-            NSLog(@"%@", error.localizedDescription);
+    if (![fileManager fileExistsAtPath:gameDataPath isDirectory:NULL]) {
+        if (![fileManager createDirectoryAtPath:gameDataPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+            NSLog(@"Error creating Data directory");
             return NO;
         }
     }
@@ -73,9 +73,46 @@
     activeMods = modList;
 }
 
+- (BOOL) setupModules
+{
+    NSLog(@"Installing Modules:");
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    NSString *relativePath = [[NSString alloc] init];
+    
+    for (NSString *module in activeMods) {
+        NSLog(@"%@", module);
+        
+        relativePath = [@"Data" stringByAppendingPathComponent:module];
+        
+        if (![fileManager fileExistsAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] isDirectory:NULL]) {
+            if (![fileManager createDirectoryAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] withIntermediateDirectories:YES attributes:nil error:nil]) {
+                NSLog(@"Error creating Data directory");
+                return NO;
+            }
+        }
+        
+        for (NSString *file in [self getModuleData:module]) {
+            relativePath = [@"Data" stringByAppendingPathComponent:file];
+            if (![fileManager fileExistsAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath] isDirectory:NULL]) {
+                NSLog(@"Does not exist");
+            }
+            if ([fileManager fileExistsAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] isDirectory:NULL]) {
+                NSLog(@"Already Installed");
+            }
+            else if(![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath] toPath:[appSupportPath stringByAppendingPathComponent:relativePath] error:&error]) {
+                
+                NSLog(@"%@: %@", [[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath], error.localizedDescription);
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
 - (NSArray *) getModuleData:(NSString *)moduleName
 {
-    NSString *modulePath = [gameDataPath stringByAppendingPathComponent:moduleName];
+    NSString *modulePath = moduleName;
     NSString *materialsPath = [modulePath stringByAppendingPathComponent:@"materials"];
     NSString *tissuesPath = [modulePath stringByAppendingPathComponent:@"tissues"];
     NSString *functionsPath = [modulePath stringByAppendingPathComponent:@"functions"];
