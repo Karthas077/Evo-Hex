@@ -19,6 +19,7 @@
 + (id) scriptManager;
 
 - (BOOL) addScript:(NSArray *)script withName:(NSString *)name;
-- (void) executeScriptNamed:(NSString *)name withSource:(id)source withTarget:(id)target;
+- (BOOL) executeScriptNamed:(NSString *)name withSource:(id)source;
+- (BOOL) executeScript:(NSArray *)script withSource:(id)source;
 
 @end
