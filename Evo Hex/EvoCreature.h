@@ -16,7 +16,6 @@
 @property NSString *name;
 @property NSUInteger creatureID;
 @property Hex *hex;
-@property CGFloat health;
 @property EvoBodyPart *core;
 @property NSMutableDictionary *bodyParts;
 @property NSHashTable *evolutions;

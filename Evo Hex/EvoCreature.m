@@ -23,7 +23,7 @@
         
         _evolutions = [[NSHashTable alloc] init];
         _creatureID = ID;
-        _health = 100;
+        [self setHealth:100];
     }
     return self;
 }
@@ -76,20 +76,24 @@
 		if ([[part function] isEqualToString:@"bite"]) {
             attackDamage = 10; // * [part efficacy];
             NSLog(@"%@ bites for %f", [self name], attackDamage);
+            [target setHealth:([target health] - attackDamage)];
         }
         else if([[part function] isEqualToString:@"strike"]) {
             attackDamage = 10;
             NSLog(@"%@ strikes for %f", [self name], attackDamage);
+            [target setHealth:([target health] - attackDamage)];
         }
         else if([[part function] isEqualToString:@"grasp"]) {
             attackDamage = 10;
             NSLog(@"%@ chokes for %f", [self name], attackDamage);
+            [target setHealth:([target health] - attackDamage)];
         }
         else if([[part function] isEqualToString:@"poison"]) {
             //Poison!
         }
 	}
 }
+
 
 - (NSUInteger) hash
 {

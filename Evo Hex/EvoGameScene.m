@@ -129,26 +129,35 @@ static void *deathWatch = &deathWatch;
         } else if (touchedNode) {
             //Adjacent
             if ([(Hex *)touchedNode type] != WaterHex) {
-                /*if ([(Hex *)touchedNode enemy]) {
-                 
-                 }*/
-                
-                if (arc4random()%10 == 0) {
-                    NSLog(@"Spawning new enemy");
-                    int randomX = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
-                    int randomY = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
-                    
-                    Hex *randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
-                    EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
-                    
-                    [newCreature setHex:randomHex];
-                    [randomHex setContents:newCreature];
-                    [newCreature setPosition:[randomHex getGridLoc]];
-                    [_world addChild:newCreature];
+                if ([[(Hex *)touchedNode contents].name isEqualToString:@"Computer"]) {
+                    [_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
+                    if ([(EvoObject *)[(Hex *)touchedNode contents] health] <= 0) {
+                        [[(Hex *)touchedNode contents] removeFromParent];
+                    }
+                    else {
+                        [(EvoCreature *)[(Hex *)touchedNode contents] attack:_player];
+                    }
                 }
-                [_player setHex:(Hex *)touchedNode];
-                [(Hex *)touchedNode setContents:_player];
-                [_player setPosition:[(Hex *)touchedNode getGridLoc]];
+                else {
+                    if (arc4random()%10 == 0) {
+                        NSLog(@"Spawning new enemy");
+                        int randomX = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
+                        int randomY = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
+                        
+                        Hex *randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
+                        EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
+                        
+                        [newCreature setHex:randomHex];
+                        [randomHex setContents:newCreature];
+                        [newCreature setPosition:[randomHex getGridLoc]];
+                        [_world addChild:newCreature];
+                    }
+                    [_player setHex:(Hex *)touchedNode];
+                    [(Hex *)touchedNode setContents:_player];
+                    [_player setPosition:[(Hex *)touchedNode getGridLoc]];
+                }
+                
+                
             }
         }
     }
@@ -212,15 +221,19 @@ static void *deathWatch = &deathWatch;
     
     if (context == deathWatch) {
         //Update Health Bar
-        /*[_ui.healthBar setSize:CGSizeMake(_player.health/_player.healthMax * 170, _ui.healthBar.size.height)];
-         if (_player.health <= 0.0) {
-         SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
-         gameOver.zPosition = 20;
-         gameOver.text = @"Game Over";
-         gameOver.fontSize = 30;
-         [self addChild:gameOver];
-         _gameOver = YES;
-         }*/
+        if (_player.health <= 0.0) {
+            [_ui.healthBar setSize:CGSizeMake(0, _ui.healthBar.size.height)];
+            SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
+            gameOver.zPosition = 20;
+            gameOver.text = @"Game Over";
+            gameOver.fontSize = 30;
+            [self addChild:gameOver];
+            _gameOver = YES;
+        }
+        else {
+            [_ui.healthBar setSize:CGSizeMake(_player.health/100 * (self.size.width/3 - 20), _ui.healthBar.size.height)];
+        }
+        return;
     }
     
     if (NO) {//[object isKindOfClass:[EvoCharacter class]]) {
