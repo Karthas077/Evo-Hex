@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		19395A411970F14B00420BD8 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 19395A401970F14B00420BD8 /* Assets */; };
+		19395A481971463500420BD8 /* EvoScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 19395A471971463500420BD8 /* EvoScript.m */; };
 		1951170C196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
 		1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170D196C9B7500622136 /* CoreGraphics.framework */; };
 		19511710196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 /* Begin PBXFileReference section */
 		19395A401970F14B00420BD8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Evo Hex/Assets"; sourceTree = "<group>"; };
 		19395A421970F15400420BD8 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = "Evo Hex/Data"; sourceTree = "<group>"; };
+		19395A461971463500420BD8 /* EvoScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoScript.h; sourceTree = "<group>"; };
+		19395A471971463500420BD8 /* EvoScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoScript.m; sourceTree = "<group>"; };
 		19511708196C9B7500622136 /* Evo Hex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evo Hex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1951170B196C9B7500622136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1951170D196C9B7500622136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +206,8 @@
 				19511760196C9BCF00622136 /* SuperHex.m */,
 				19DADDAC19709BCA0079B382 /* EvoObjectManager.h */,
 				19DADDAD19709BCA0079B382 /* EvoObjectManager.m */,
+				19395A461971463500420BD8 /* EvoScript.h */,
+				19395A471971463500420BD8 /* EvoScript.m */,
 				19F2A8FC19708E9E00BDD56B /* EvoScriptManager.h */,
 				19F2A8FD19708E9E00BDD56B /* EvoScriptManager.m */,
 				19F2A8A7196D300500BDD56B /* EvoDataManager.h */,
@@ -360,6 +365,7 @@
 				1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */,
 				19F2A89A196CE88100BDD56B /* EvoMaterial.m in Sources */,
 				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
+				19395A481971463500420BD8 /* EvoScript.m in Sources */,
 				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
 				1951176D196C9BCF00622136 /* Hex.m in Sources */,
 				19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */,

@@ -8,18 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "EvoObjectManager.h"
+#import "EvoScript.h"
 
 @interface EvoScriptManager : NSObject {
     NSMutableDictionary *scripts;
+    NSMutableDictionary *scriptQueue;
+    NSNumber *currentTime;
 }
 
 @property (nonatomic, retain) NSMutableDictionary *scripts;
-
+@property (nonatomic, retain) NSMutableDictionary *scriptQueue;
+@property (nonatomic, retain) NSNumber *currentTime;
 
 + (id) scriptManager;
 
+- (void) setTime:(NSNumber *) time;
+
 - (BOOL) addScript:(NSArray *)script withName:(NSString *)name;
 - (BOOL) executeScriptNamed:(NSString *)name withSource:(id)source;
-- (BOOL) executeScript:(NSArray *)script withSource:(id)source;
+- (BOOL) executeScript:(EvoScript *)script withSource:(id)source;
 
 @end
