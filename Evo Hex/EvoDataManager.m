@@ -115,12 +115,12 @@
     NSString *modulePath = moduleName;
     NSString *materialsPath = [modulePath stringByAppendingPathComponent:@"materials"];
     NSString *tissuesPath = [modulePath stringByAppendingPathComponent:@"tissues"];
-    NSString *functionsPath = [modulePath stringByAppendingPathComponent:@"functions"];
     NSString *bodyPartsPath = [modulePath stringByAppendingPathComponent:@"bodyParts"];
     NSString *evolutionsPath = [modulePath stringByAppendingPathComponent:@"evolutions"];
     NSString *creaturesPath = [modulePath stringByAppendingPathComponent:@"creatures"];
+    //    NSString *scriptsPath = [modulePath stringByAppendingPathComponent:@"scripts"];
     
-    return [[NSArray alloc] initWithObjects:materialsPath, tissuesPath, functionsPath, bodyPartsPath, evolutionsPath, creaturesPath, nil];
+    return [[NSArray alloc] initWithObjects:materialsPath, tissuesPath, bodyPartsPath, evolutionsPath, creaturesPath, /*scriptsPath,*/ nil];
 }
 
 - (NSArray *) loadMaterials
@@ -191,29 +191,6 @@
 - (EvoBodyPart *) parseBodyPart:(NSString *) file
 {
     return [[EvoBodyPart alloc] init];
-}
-
-- (NSArray *) loadFunctions
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSMutableArray *functions = [[NSMutableArray alloc]init];
-    NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:gameDataPath];
-    
-    NSString *file;
-    while ((file = [dirEnum nextObject])) {
-        if ([@"functions" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
-            [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
-            [[file pathExtension] isEqualToString: @"dat"]) {
-            [functions addObject:[self parseCreatureFunction: [[gameDataPath stringByAppendingPathComponent:@"functions"] stringByAppendingPathComponent:file]]];
-        }
-    }
-    
-    return [functions copy];
-}
-
-- (EvoCreatureFunction *) parseCreatureFunction:(NSString *) file
-{
-    return [[EvoCreatureFunction alloc] init];
 }
 
 - (NSArray *) loadEvolutions

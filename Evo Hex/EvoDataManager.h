@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EvoScriptManager.h"
 #import "EvoCreature.h"
 
 @interface EvoDataManager : NSObject {
@@ -32,8 +33,8 @@
 - (EvoMaterial *) parseMaterial:(NSString *)file;
 - (NSArray *) loadTissues;
 - (EvoTissue *) parseTissue:(NSString *)file;
-- (NSArray *) loadFunctions;
-- (EvoCreatureFunction *) parseCreatureFunction:(NSString *)file;
+//- (void) loadScripts;
+//- (NSArray *) parseScript:(NSString *)file;
 - (NSArray *) loadBodyParts;
 - (EvoBodyPart *) parseBodyPart:(NSString *)file;
 - (NSArray *) loadEvolutions;

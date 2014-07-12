@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19395A411970F14B00420BD8 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 19395A401970F14B00420BD8 /* Assets */; };
 		1951170C196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
 		1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170D196C9B7500622136 /* CoreGraphics.framework */; };
 		19511710196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
@@ -21,33 +22,24 @@
 		19511737196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
 		1951173F196C9B7500622136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1951173D196C9B7500622136 /* InfoPlist.strings */; };
 		19511741196C9B7500622136 /* Evo_HexTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511740196C9B7500622136 /* Evo_HexTests.m */; };
-		19511761196C9BCF00622136 /* Grass_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951174C196C9BCF00622136 /* Grass_Hex.png */; };
-		19511762196C9BCF00622136 /* Grass_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1951174D196C9BCF00622136 /* Grass_Square.jpg */; };
-		19511763196C9BCF00622136 /* Mountain_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 1951174E196C9BCF00622136 /* Mountain_Hex.png */; };
-		19511764196C9BCF00622136 /* Mountain_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1951174F196C9BCF00622136 /* Mountain_Square.jpg */; };
-		19511765196C9BCF00622136 /* Sand_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 19511750196C9BCF00622136 /* Sand_Hex.png */; };
-		19511766196C9BCF00622136 /* Sand_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19511751196C9BCF00622136 /* Sand_Square.jpg */; };
-		19511767196C9BCF00622136 /* Water_Hex.png in Resources */ = {isa = PBXBuildFile; fileRef = 19511752196C9BCF00622136 /* Water_Hex.png */; };
-		19511768196C9BCF00622136 /* Water_Square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19511753196C9BCF00622136 /* Water_Square.jpg */; };
 		19511769196C9BCF00622136 /* EvoGameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511755196C9BCF00622136 /* EvoGameScene.m */; };
 		1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511757196C9BCF00622136 /* EvoMenuScene.m */; };
 		1951176B196C9BCF00622136 /* EvoUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511759196C9BCF00622136 /* EvoUI.m */; };
 		1951176C196C9BCF00622136 /* HexGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175B196C9BCF00622136 /* HexGrid.m */; };
 		1951176D196C9BCF00622136 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175D196C9BCF00622136 /* Hex.m */; };
 		1951176E196C9BCF00622136 /* SuperHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511760196C9BCF00622136 /* SuperHex.m */; };
+		19DADDAE19709BCA0079B382 /* EvoObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADDAD19709BCA0079B382 /* EvoObjectManager.m */; };
 		19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */; };
 		19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88F196CA5B400BDD56B /* EvoCreature.m */; };
 		19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A891196CA5B400BDD56B /* EvoEvolution.m */; };
 		19F2A897196CDA6300BDD56B /* EvoTissue.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A896196CDA6300BDD56B /* EvoTissue.m */; };
 		19F2A89A196CE88100BDD56B /* EvoMaterial.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A899196CE88100BDD56B /* EvoMaterial.m */; };
-		19F2A89D196D229600BDD56B /* EvoCreatureFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */; };
 		19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */; };
 		19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8A8196D300500BDD56B /* EvoDataManager.m */; };
-		19F2A8AE196F802F00BDD56B /* Gorilla_Sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */; };
 		19F2A8B2196F82E100BDD56B /* EvoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8B1196F82E100BDD56B /* EvoObject.m */; };
 		19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
 		19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
-		19F2A8F8196FA47D00BDD56B /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 19F2A8F7196FA47D00BDD56B /* Data */; };
+		19F2A8FE19708E9E00BDD56B /* EvoScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8FD19708E9E00BDD56B /* EvoScriptManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		19395A401970F14B00420BD8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Evo Hex/Assets"; sourceTree = "<group>"; };
+		19395A421970F15400420BD8 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = "Evo Hex/Data"; sourceTree = "<group>"; };
 		19511708196C9B7500622136 /* Evo Hex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evo Hex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1951170B196C9B7500622136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1951170D196C9B7500622136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -82,14 +76,6 @@
 		1951173C196C9B7500622136 /* Evo HexTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Evo HexTests-Info.plist"; sourceTree = "<group>"; };
 		1951173E196C9B7500622136 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19511740196C9B7500622136 /* Evo_HexTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Evo_HexTests.m; sourceTree = "<group>"; };
-		1951174C196C9BCF00622136 /* Grass_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grass_Hex.png; sourceTree = "<group>"; };
-		1951174D196C9BCF00622136 /* Grass_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Grass_Square.jpg; sourceTree = "<group>"; };
-		1951174E196C9BCF00622136 /* Mountain_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mountain_Hex.png; sourceTree = "<group>"; };
-		1951174F196C9BCF00622136 /* Mountain_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mountain_Square.jpg; sourceTree = "<group>"; };
-		19511750196C9BCF00622136 /* Sand_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sand_Hex.png; sourceTree = "<group>"; };
-		19511751196C9BCF00622136 /* Sand_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sand_Square.jpg; sourceTree = "<group>"; };
-		19511752196C9BCF00622136 /* Water_Hex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water_Hex.png; sourceTree = "<group>"; };
-		19511753196C9BCF00622136 /* Water_Square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Water_Square.jpg; sourceTree = "<group>"; };
 		19511754196C9BCF00622136 /* EvoGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoGameScene.h; sourceTree = "<group>"; };
 		19511755196C9BCF00622136 /* EvoGameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoGameScene.m; sourceTree = "<group>"; };
 		19511756196C9BCF00622136 /* EvoMenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMenuScene.h; sourceTree = "<group>"; };
@@ -103,6 +89,8 @@
 		1951175E196C9BCF00622136 /* HexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexProtocol.h; sourceTree = "<group>"; };
 		1951175F196C9BCF00622136 /* SuperHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHex.h; sourceTree = "<group>"; };
 		19511760196C9BCF00622136 /* SuperHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHex.m; sourceTree = "<group>"; };
+		19DADDAC19709BCA0079B382 /* EvoObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoObjectManager.h; sourceTree = "<group>"; };
+		19DADDAD19709BCA0079B382 /* EvoObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoObjectManager.m; sourceTree = "<group>"; };
 		19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoBodyPart.h; sourceTree = "<group>"; };
 		19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoBodyPart.m; sourceTree = "<group>"; };
 		19F2A88E196CA5B400BDD56B /* EvoCreature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreature.h; sourceTree = "<group>"; };
@@ -113,18 +101,16 @@
 		19F2A896196CDA6300BDD56B /* EvoTissue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoTissue.m; sourceTree = "<group>"; };
 		19F2A898196CE88100BDD56B /* EvoMaterial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoMaterial.h; sourceTree = "<group>"; };
 		19F2A899196CE88100BDD56B /* EvoMaterial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoMaterial.m; sourceTree = "<group>"; };
-		19F2A89B196D229600BDD56B /* EvoCreatureFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreatureFunction.h; sourceTree = "<group>"; };
-		19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreatureFunction.m; sourceTree = "<group>"; };
 		19F2A89E196D230F00BDD56B /* EvoCreatureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCreatureManager.h; sourceTree = "<group>"; };
 		19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCreatureManager.m; sourceTree = "<group>"; };
 		19F2A8A7196D300500BDD56B /* EvoDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoDataManager.h; sourceTree = "<group>"; };
 		19F2A8A8196D300500BDD56B /* EvoDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoDataManager.m; sourceTree = "<group>"; };
-		19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Gorilla_Sprite.png; path = Sprites/Gorilla_Sprite.png; sourceTree = "<group>"; };
 		19F2A8B0196F82E100BDD56B /* EvoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoObject.h; sourceTree = "<group>"; };
 		19F2A8B1196F82E100BDD56B /* EvoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoObject.m; sourceTree = "<group>"; };
 		19F2A8EE196FA3D900BDD56B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		19F2A8F0196FA3DC00BDD56B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
-		19F2A8F7196FA47D00BDD56B /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
+		19F2A8FC19708E9E00BDD56B /* EvoScriptManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoScriptManager.h; sourceTree = "<group>"; };
+		19F2A8FD19708E9E00BDD56B /* EvoScriptManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoScriptManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +141,8 @@
 		195116FF196C9B7500622136 = {
 			isa = PBXGroup;
 			children = (
+				19395A421970F15400420BD8 /* Data */,
+				19395A401970F14B00420BD8 /* Assets */,
 				19511713196C9B7500622136 /* Evo Hex */,
 				1951173A196C9B7500622136 /* Evo HexTests */,
 				1951170A196C9B7500622136 /* Frameworks */,
@@ -186,14 +174,10 @@
 		19511713196C9B7500622136 /* Evo Hex */ = {
 			isa = PBXGroup;
 			children = (
-				19F2A8F7196FA47D00BDD56B /* Data */,
-				1951174A196C9BCF00622136 /* Assets */,
 				19F2A898196CE88100BDD56B /* EvoMaterial.h */,
 				19F2A899196CE88100BDD56B /* EvoMaterial.m */,
 				19F2A895196CDA6300BDD56B /* EvoTissue.h */,
 				19F2A896196CDA6300BDD56B /* EvoTissue.m */,
-				19F2A89B196D229600BDD56B /* EvoCreatureFunction.h */,
-				19F2A89C196D229600BDD56B /* EvoCreatureFunction.m */,
 				19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */,
 				19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */,
 				19F2A890196CA5B400BDD56B /* EvoEvolution.h */,
@@ -217,6 +201,10 @@
 				1951175E196C9BCF00622136 /* HexProtocol.h */,
 				1951175F196C9BCF00622136 /* SuperHex.h */,
 				19511760196C9BCF00622136 /* SuperHex.m */,
+				19DADDAC19709BCA0079B382 /* EvoObjectManager.h */,
+				19DADDAD19709BCA0079B382 /* EvoObjectManager.m */,
+				19F2A8FC19708E9E00BDD56B /* EvoScriptManager.h */,
+				19F2A8FD19708E9E00BDD56B /* EvoScriptManager.m */,
 				19F2A8A7196D300500BDD56B /* EvoDataManager.h */,
 				19F2A8A8196D300500BDD56B /* EvoDataManager.m */,
 				1951171C196C9B7500622136 /* EvoAppDelegate.h */,
@@ -258,38 +246,6 @@
 				1951173D196C9B7500622136 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1951174A196C9BCF00622136 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				19F2A8AF196F803400BDD56B /* Sprites */,
-				1951174B196C9BCF00622136 /* Tiles */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		1951174B196C9BCF00622136 /* Tiles */ = {
-			isa = PBXGroup;
-			children = (
-				1951174C196C9BCF00622136 /* Grass_Hex.png */,
-				1951174D196C9BCF00622136 /* Grass_Square.jpg */,
-				1951174E196C9BCF00622136 /* Mountain_Hex.png */,
-				1951174F196C9BCF00622136 /* Mountain_Square.jpg */,
-				19511750196C9BCF00622136 /* Sand_Hex.png */,
-				19511751196C9BCF00622136 /* Sand_Square.jpg */,
-				19511752196C9BCF00622136 /* Water_Hex.png */,
-				19511753196C9BCF00622136 /* Water_Square.jpg */,
-			);
-			path = Tiles;
-			sourceTree = "<group>";
-		};
-		19F2A8AF196F803400BDD56B /* Sprites */ = {
-			isa = PBXGroup;
-			children = (
-				19F2A8AD196F802F00BDD56B /* Gorilla_Sprite.png */,
-			);
-			name = Sprites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,20 +328,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19395A411970F14B00420BD8 /* Assets in Resources */,
 				19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */,
 				19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */,
 				1951172E196C9B7500622136 /* Images.xcassets in Resources */,
-				19511762196C9BCF00622136 /* Grass_Square.jpg in Resources */,
 				19511718196C9B7500622136 /* InfoPlist.strings in Resources */,
-				19F2A8AE196F802F00BDD56B /* Gorilla_Sprite.png in Resources */,
-				19F2A8F8196FA47D00BDD56B /* Data in Resources */,
-				19511767196C9BCF00622136 /* Water_Hex.png in Resources */,
-				19511768196C9BCF00622136 /* Water_Square.jpg in Resources */,
-				19511764196C9BCF00622136 /* Mountain_Square.jpg in Resources */,
-				19511765196C9BCF00622136 /* Sand_Hex.png in Resources */,
-				19511763196C9BCF00622136 /* Mountain_Hex.png in Resources */,
-				19511766196C9BCF00622136 /* Sand_Square.jpg in Resources */,
-				19511761196C9BCF00622136 /* Grass_Hex.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +353,7 @@
 			files = (
 				1951176B196C9BCF00622136 /* EvoUI.m in Sources */,
 				19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */,
+				19F2A8FE19708E9E00BDD56B /* EvoScriptManager.m in Sources */,
 				19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */,
 				1951171A196C9B7500622136 /* main.m in Sources */,
 				1951176E196C9BCF00622136 /* SuperHex.m in Sources */,
@@ -414,10 +362,10 @@
 				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
 				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
 				1951176D196C9BCF00622136 /* Hex.m in Sources */,
-				19F2A89D196D229600BDD56B /* EvoCreatureFunction.m in Sources */,
 				19F2A894196CA5B400BDD56B /* EvoEvolution.m in Sources */,
 				1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */,
 				19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */,
+				19DADDAE19709BCA0079B382 /* EvoObjectManager.m in Sources */,
 				19F2A897196CDA6300BDD56B /* EvoTissue.m in Sources */,
 				19F2A8B2196F82E100BDD56B /* EvoObject.m in Sources */,
 				19511769196C9BCF00622136 /* EvoGameScene.m in Sources */,

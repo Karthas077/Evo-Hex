@@ -9,6 +9,28 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Hex.h"
 
+typedef NS_ENUM(NSInteger, SenseType)
+{
+    Light, //Frequency and intensity
+    Vibrations_Air, //Intensity
+    Vibrations_Ground, //Intensity
+    Chemicals_Gas, //ppm
+    Chemicals_Liquid, //ppm
+    Chemicals_Solid, //ppm
+    ElectricField, //Strength
+    MagneticField //Strength
+};
+
+/*static NSString * const senses[] =
+{@"electromagnetic",
+    @"mechanical",
+    @"mechanical",
+    @"chemical",
+    @"chemical",
+    @"chemical",
+    @"electricField",
+    @"magneticField"};*/
+
 @interface EvoObject : SKSpriteNode
 
 - (EvoObject *) initWithTexture:(SKTexture *)texture;

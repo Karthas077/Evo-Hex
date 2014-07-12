@@ -11,7 +11,7 @@
 
 @implementation EvoBodyPart
 
-- (EvoBodyPart *) initWithID:(NSUInteger)ID fromFile:(NSString *)file
+- (EvoBodyPart *) initWithID:(NSUInteger)ID
 {
     self = [super init];
     if (self) {

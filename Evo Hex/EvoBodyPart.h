@@ -12,7 +12,10 @@
 
 @interface EvoBodyPart : NSObject
 
+@property NSString *name;
 @property NSUInteger ID;
+@property NSString *type;
+@property NSString *function;
 @property (weak) EvoCreature *creature;
 @property NSMutableArray *tissues;
 @property NSHashTable *attachedParts;
@@ -23,7 +26,7 @@
 @property (nonatomic) CGFloat volume;
 
 
--(EvoBodyPart *) initWithID:(NSUInteger)ID fromFile:(NSString *)file;
+-(EvoBodyPart *) initWithID:(NSUInteger)ID;
 -(void) addTissue:(EvoTissue *)tissue;
 -(void) removeTissue:(EvoTissue *)tissue;
 -(void) attachToPart:(EvoBodyPart *)part;

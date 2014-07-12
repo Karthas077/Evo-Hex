@@ -9,7 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "EvoDataManager.h"
 
-@interface EvoCreatureManager : NSObject
+@interface EvoCreatureManager : NSObject {
+    NSMutableArray *creatures;
+}
 
 @property NSArray *materials;
 @property NSArray *tissues;
@@ -17,5 +19,11 @@
 @property NSArray *bodyParts;
 @property NSArray *evolutions;
 @property NSMutableArray *creatures;
+@property NSUInteger numCreatures;
+@property NSUInteger numParts;
+
++ (id) creatureManager;
+
+- (EvoCreature *) spawnCreature;
 
 @end

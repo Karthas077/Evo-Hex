@@ -10,7 +10,7 @@
 
 @implementation EvoTissue
 
-- (EvoTissue *) initFromFile:(NSString *)file
+- (EvoTissue *) init
 {
     self = [super init];
     if (self) {

@@ -10,7 +10,6 @@
 #import "EvoObject.h"
 #import "EvoBodyPart.h"
 #import "EvoEvolution.h"
-#import "EvoCreatureFunction.h"
 
 @interface EvoCreature : EvoObject
 
@@ -19,7 +18,7 @@
 @property Hex *hex;
 @property CGFloat health;
 @property EvoBodyPart *core;
-@property NSHashTable *bodyParts;
+@property NSMutableDictionary *bodyParts;
 @property NSHashTable *evolutions;
 
 @property CGFloat mass;
@@ -31,5 +30,29 @@
 -(void) removePart:(EvoBodyPart *) part;
 -(void) evolve:(EvoEvolution *) evolution;
 -(void) devolve:(EvoEvolution *) evolution;
+
+//Functions:
+//Senses -
+//Hearing
+//Sight
+//Smell
+//Taste
+//Touch
+//Infrared
+//Bioelectric Field
+//
+//Actions -
+//Locomotion (Walking Running Swimming Climbing Jumping Flying)
+//Attacks (Bite Strike Grapple Spray)
+//Deception (Hiding/Camouflage, Mimicry, Inflation, etc.)
+//
+//Biological Functions -
+//Eat
+//Breathe
+//Defication
+//Reproduction
+
+- (BOOL) canDetect:(EvoCreature *)target;
+- (void) attack:(EvoObject *) target;
 
 @end

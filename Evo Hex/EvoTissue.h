@@ -56,28 +56,7 @@
 @property Boolean energyStore;
 @property CGFloat energyMassRatio;
 
-//Functions:
-//Senses -
-//Hearing
-//Sight
-//Smell
-//Taste
-//Touch
-//Infrared
-//Bioelectric Field
-//
-//Actions -
-//Locomotion (Walking Running Swimming Climbing Jumping Flying)
-//Attacks (Bite Strike Grapple Spray)
-//Deception (Hiding/Camouflage, Mimicry, Inflation, etc.)
-//
-//Biological Functions -
-//Eat
-//Breathe
-//Defication
-//Reproduction
-
-- (EvoTissue *) initFromFile:(NSString *) file;
+- (EvoTissue *) init;
 - (CGFloat) getDensity;
 - (CGFloat) getMass;
 

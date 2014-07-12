@@ -22,13 +22,31 @@ static void *deathWatch = &deathWatch;
         [_map setPosition:CGPointMake(0, 0)];
         [_map setZPosition:0];
         
-        _player = [[EvoCreature alloc] initWithID:1];
+        _player = [[EvoCreature alloc] initWithID:0];
+        
+        EvoBodyPart *larm = [[EvoBodyPart alloc] initWithID:0];
+        [larm setType:@"fighting"];
+        [larm setFunction:@"strike"];
+        EvoBodyPart *rarm = [[EvoBodyPart alloc] initWithID:1];
+        [rarm setType:@"fighting"];
+        [rarm setFunction:@"strike"];
+        EvoBodyPart *mouth = [[EvoBodyPart alloc] initWithID:2];
+        [mouth setType:@"fighting"];
+        [mouth setFunction:@"bite"];
+        
+        [_player attachPart:larm];
+        [_player attachPart:rarm];
+        [_player attachPart:mouth];
+        
+        Hex *playerSpawn = [_map getHexWithX:0 withY:0];
+        
         [_player setName:@"Player"];
-        [_player setHex: [_map getHexWithX:0 withY:0]];
+        [_player setHex: playerSpawn];
         [_player setTexture:[SKTexture textureWithImageNamed:@"Gorilla_Sprite.png"]];
-        [[_map getHexWithX:0 withY:0] setContents: _player];
-        [_player setPosition:CGPointMake(0,0)]; //[[_map getHexWithX:0 withY:0] getGridLoc]];
-        [_player setZPosition:200];
+        [_player setScale:0.5];
+        [playerSpawn setContents: _player];
+        [_player setPosition:[playerSpawn getGridLoc]]; //
+        [_player setZPosition:10];
         
         [_world addChild:_map];
         [_world addChild:_player];
@@ -49,6 +67,8 @@ static void *deathWatch = &deathWatch;
          forKeyPath:@"health"
          options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
          context:deathWatch];
+        [[EvoCreatureManager creatureManager] spawnCreature];
+        
     }
     return self;
 }
@@ -112,6 +132,20 @@ static void *deathWatch = &deathWatch;
                 /*if ([(Hex *)touchedNode enemy]) {
                  
                  }*/
+                
+                if (arc4random()%10 == 0) {
+                    NSLog(@"Spawning new enemy");
+                    int randomX = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
+                    int randomY = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
+                    
+                    Hex *randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
+                    EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
+                    
+                    [newCreature setHex:randomHex];
+                    [randomHex setContents:newCreature];
+                    [newCreature setPosition:[randomHex getGridLoc]];
+                    [_world addChild:newCreature];
+                }
                 [_player setHex:(Hex *)touchedNode];
                 [(Hex *)touchedNode setContents:_player];
                 [_player setPosition:[(Hex *)touchedNode getGridLoc]];

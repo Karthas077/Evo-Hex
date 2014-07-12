@@ -15,7 +15,6 @@
 
 //Physical Properties
 @property CGFloat density;
-@property NSString *state;
 @property CGFloat heatDamagePoint;
 @property CGFloat coldDamagePoint;
 

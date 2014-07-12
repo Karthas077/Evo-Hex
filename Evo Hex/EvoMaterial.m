@@ -21,11 +21,6 @@
             _density = 1900; //kg/m^3
         }
         
-        _state = [[data objectForKey:@"state"] stringValue];
-        if (!_state) {
-            _state = @"solid";
-        }
-        
         _heatDamagePoint = [[data objectForKey:@"heatDamagePoint"] doubleValue];
         if (!_heatDamagePoint) {
             _heatDamagePoint = 0;
