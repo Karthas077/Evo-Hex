@@ -78,7 +78,7 @@
     NSLog(@"Installing Modules:");
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error = nil;
-    NSString *relativePath = [[NSString alloc] init];
+    NSString *relativePath;
     
     for (NSString *module in activeMods) {
         NSLog(@"%@", module);
@@ -272,7 +272,8 @@
 
 - (EvoScript *) parseScript:(NSString *) file
 {
-    NSString *archivePath = [[file stringByDeletingPathExtension] stringByAppendingPathExtension:@"arc"];
+    //Archiving Disabled until properly Profiled
+    /*NSString *archivePath = [[file stringByDeletingPathExtension] stringByAppendingPathExtension:@"arc"];
     if ([[[[NSFileManager defaultManager] attributesOfItemAtPath:file error:nil] objectForKey:NSFileModificationDate] compare:
          [[[NSFileManager defaultManager] attributesOfItemAtPath:archivePath error:nil] objectForKey:NSFileModificationDate]] == NSOrderedAscending) {
         
@@ -281,88 +282,65 @@
         
         EvoScript *newScript = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
         return newScript;
-    }
+    }*/
     
     NSLog(@"Compiling %@", [file lastPathComponent]);
-    //leaf:[targetName:targetKey:expression:parameters:...]
-    //node:[label1:script1:source1:label2:script2:source2:...]
+    //store:[label:script:source:targetName:targetKey]
+    //evaluate:[expression:parameters:...]
+    //split:[label1:script1:source1:label2:script2:source2:...]
     //delay:[label:script:source:time]
     //repeat:[label:script:source:time]
     //call:[scriptName:source]
-    //branchif:[label:conditional:source:label:true:source:label:false:source]
-    //lessthan:[object1:object2]
-    //greaterthan:[object1:object2]
-    //equalto:[object1:object2]
+    //if:[label:conditional:source:label:true:source:label:false:source]
+    //lessthan(c):[object1:object2]
+    //greaterthan(c):[object1:object2]
+    //equalto(c):[object1:object2]
+    //and:[label:conditional:source]
     //not:[label:conditional:source]
     
     NSError *error = nil;
-    NSString *contents = [[NSString alloc] initWithContentsOfFile:file encoding:NSUTF8StringEncoding error:&error];
+    NSMutableString *contents = [[NSMutableString alloc] initWithContentsOfFile:file encoding:NSUTF8StringEncoding error:&error];
+    
+    NSArray *whitelessArray = [contents componentsSeparatedByCharactersInSet :[NSCharacterSet characterSetWithCharactersInString:@" \t\n"]];
+    contents = [[whitelessArray componentsJoinedByString:@""] mutableCopy];
+    
     NSString *label = [contents substringToIndex:[contents rangeOfString:@":"].location];
-    //NSLog(@"Label:\n%@", label);
-    contents = [contents substringFromIndex:[contents rangeOfString:@":"].location+1];
-    //NSLog(@"Contents:\n%@", contents);
+    NSLog(@"Label:\n%@", label);
+    contents = [[contents substringFromIndex:[contents rangeOfString:@":"].location+1] mutableCopy];
     
     NSMutableDictionary *reverseLookup = [[NSMutableDictionary alloc] init];
     
-    NSRegularExpression* regex = [NSRegularExpression
-                                  regularExpressionWithPattern:@"\\[([a-zA-Z0-9%+-]+:?)+\\]"
-                                  options:NSRegularExpressionCaseInsensitive
-                                  error:&error];
-    
-    NSMutableString* mutableString = [contents mutableCopy];
-    
-    //NSLog(@"Beginning regex");
     
     while ([contents rangeOfString:@"qrrbrblll"].location != 0) {
-        //NSLog(@"Contents:\n%@", contents);
-        NSInteger offset = 0; // keeps track of range changes in the string
-        // due to replacements.
-        for (NSTextCheckingResult* result in [regex matchesInString:contents
-                                                            options:0
-                                                              range:NSMakeRange(0, [contents length])]) {
-            
-            NSRange resultRange = [result range];
-            resultRange.location += offset; // resultRange.location is updated
-            // based on the offset updated below
-            
-            // implement your own replace functionality using
-            // replacementStringForResult:inString:offset:template:
-            // note that in the template $0 is replaced by the match
-            NSString* match = [regex replacementStringForResult:result
-                                                       inString:mutableString
-                                                         offset:offset
-                                                       template:@"$0"];
-            
-            NSString* replacement = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]];
-            
-            //NSLog(@"replacing:%@ with:%@", match, replacement);
-            
-            [reverseLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
-            
-            // make the replacement
-            [mutableString replaceCharactersInRange:resultRange withString:replacement];
-            
-            // update the offset based on the replacement
-            offset += ([replacement length] - resultRange.length);
-        }
         
-        contents = [mutableString copy];
+        //NSLog(@"Contents:\n%@", contents);
+        
+        NSRange subscriptStart = [contents rangeOfString:@"[" options:NSBackwardsSearch range:NSMakeRange(0, [contents length])];
+        NSRange subscriptEnd = [contents rangeOfString:@"]" options:0 range:NSMakeRange(subscriptStart.location, [contents length] - subscriptStart.location)];
+        NSRange subscript = NSMakeRange(subscriptStart.location, subscriptEnd.location - subscriptStart.location + 1);
+        NSString* match = [contents substringWithRange:subscript];
+        NSString* replacement = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]];
+        
+        NSLog(@"replacing:%@ with:%@", match, replacement);
+        
+        [reverseLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
+        
+        // make the replacement
+        [contents replaceCharactersInRange:subscript withString:replacement];
+        
     }
     
-    NSMutableArray *scriptData = [[NSMutableArray alloc] init];
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    NSMutableArray *scriptData;
+    NSMutableArray *tempArray;
     NSUInteger numReplacements = [reverseLookup count];
     NSString *testString = @"qrrbrblll0";
     
     for (NSUInteger i=1; i<numReplacements; i++) {
         testString = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)i];
         tempArray = [[reverseLookup objectForKey:testString] mutableCopy];
-        for (NSUInteger j=1; j<[tempArray count]; j++) {
+        for (NSUInteger j=0; j<[tempArray count]; j++) {
             NSRange tempRange = [[tempArray objectAtIndex:j] rangeOfString:@"qrrbrblll"];
-            if (tempRange.location == NSNotFound) {
-                continue;
-            }
-            else {
+            if (tempRange.location != NSNotFound) {
                 NSUInteger toReplace = [[[tempArray objectAtIndex:j] substringFromIndex:(tempRange.location + tempRange.length)] integerValue];
                 [tempArray setObject:[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)toReplace]] atIndexedSubscript:j];
             }
@@ -372,6 +350,7 @@
     
     scriptData = [[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]-1]] mutableCopy];
     
+    NSLog(@"%@", scriptData);
     
     EvoScript *newScript = [[EvoScript alloc] initScript:[scriptData copy]];
     [newScript setLabel:label];
@@ -379,9 +358,7 @@
     //NSLog(@"Created script named %@ with label %@", [[file lastPathComponent] stringByDeletingPathExtension], label);
     
     
-    [NSKeyedArchiver archiveRootObject:newScript toFile:archivePath];
-    
-    //[fileManager removeItemAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] error:&error];
+    //[NSKeyedArchiver archiveRootObject:newScript toFile:archivePath];
     
     return newScript;
 }

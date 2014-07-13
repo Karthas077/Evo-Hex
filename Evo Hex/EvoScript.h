@@ -16,6 +16,5 @@
 @property id source;
 
 - (EvoScript *) initScript:(NSArray *)script;
-- (void) execute;
 
 @end

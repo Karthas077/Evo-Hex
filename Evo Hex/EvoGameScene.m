@@ -124,21 +124,14 @@ static void *deathWatch = &deathWatch;
         if (distanceFromPlayer > 3000.0) {
             //Not Adjacent
         } else if (touchedNode) {
-            EvoCreature *creature = (EvoCreature *)[(Hex *)touchedNode contents];
-            if ([[creature name] isEqualToString:@"Player"]) {
-                    NSLog(@"Before:");
-                    NSLog(@"health:%f, healRate:%f, energy:%f, energyRate:%f, nutrients:%f", [creature health], [creature healRate], [creature energy], [creature energyRate], [creature nutrients]);
-                    
-                    [[EvoScriptManager scriptManager] executeScriptNamed:@"heal" withSource:creature];
-                    
-                    NSLog(@"After:");
-                    NSLog(@"health:%f, healRate:%f, energy:%f, energyRate:%f, nutrients:%f", [creature health], [creature healRate], [creature energy], [creature energyRate], [creature nutrients]);
-                    break;
+            if (![[[(Hex *)touchedNode contents] name] isEqualToString:@"Player"]) {
+                    [[EvoScriptManager scriptManager] executeScriptNamed:@"heal" withSource:_player];
             }
-            
             //Adjacent
             if ([(Hex *)touchedNode type] != WaterHex) {
                 if ([[(Hex *)touchedNode contents].name isEqualToString:@"Computer"]) {
+                    [_player setTarget:[(Hex *)touchedNode contents]];
+                    //[[EvoScriptManager scriptManager] executeScriptNamed:@"attack" withSource:_player];
                     [_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
                     if ([(EvoObject *)[(Hex *)touchedNode contents] health] <= 0) {
                         [[(Hex *)touchedNode contents] removeFromParent];

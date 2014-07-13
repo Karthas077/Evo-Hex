@@ -1,1 +1,46 @@
-node:[leaf:[self:health:%f+%f:health:healRate]:self:node:[leaf:[self:energy:%f+%f:energy:energyRate]:self:leaf:[self:nutrients:%f-5:nutrients]:self]:self]
+if:
+[
+    and:
+    [
+        greaterthan:
+        [
+            [%f:nutrients]:
+            [0]
+        ]:
+        lessthan:
+        [
+            [%f:health]:
+            [100]
+        ]
+    ]:
+    split:
+    [
+        3:
+        store:
+        [
+            evaluate:
+                [%f+%f:health:healRate]:
+                self:
+                self:
+                health
+        ]:
+        store:
+        [
+            evaluate:
+                [%f+%f:energy:energyRate]:
+                self:
+                self:
+                energy
+        ]:
+        store:
+        [
+            evaluate:
+                [%f-5:nutrients]:
+                self:
+                self:
+                nutrients
+        ]
+    ]:
+    donothing:
+    nothing
+]

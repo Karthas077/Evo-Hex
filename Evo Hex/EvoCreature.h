@@ -29,6 +29,7 @@
 @property CGFloat energy;
 @property CGFloat energyRate;
 @property CGFloat nutrients;
+@property (weak) EvoObject *target;
 //FOR SCRIPT TESTING
 
 -(EvoCreature *) initWithID:(NSUInteger) ID;
