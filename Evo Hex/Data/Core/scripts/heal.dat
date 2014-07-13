@@ -5,12 +5,12 @@ if:
         greaterthan:
         [
             [%f:nutrients]:
-            [0]
+            0
         ]:
         lessthan:
         [
             [%f:health]:
-            [100]
+            100
         ]
     ]:
     split:
@@ -20,25 +20,22 @@ if:
         [
             evaluate:
                 [%f+%f:health:healRate]:
-                self:
-                self:
-                health
+            self:
+            health
         ]:
         store:
         [
             evaluate:
                 [%f+%f:energy:energyRate]:
-                self:
-                self:
-                energy
+            self:
+            energy
         ]:
         store:
         [
             evaluate:
                 [%f-5:nutrients]:
-                self:
-                self:
-                nutrients
+            self:
+            nutrients
         ]
     ]:
     donothing:
