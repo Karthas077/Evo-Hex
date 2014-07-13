@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19395A411970F14B00420BD8 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 19395A401970F14B00420BD8 /* Assets */; };
 		19395A481971463500420BD8 /* EvoScript.m in Sources */ = {isa = PBXBuildFile; fileRef = 19395A471971463500420BD8 /* EvoScript.m */; };
+		19395A5F19725BCD00420BD8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
+		19395A6019725BD500420BD8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
+		19395A6E19725FDB00420BD8 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 19395A6D19725FDB00420BD8 /* Data */; };
+		19395A7019725FE400420BD8 /* Sprites in Resources */ = {isa = PBXBuildFile; fileRef = 19395A6F19725FE400420BD8 /* Sprites */; };
+		19395A7219725FEC00420BD8 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = 19395A7119725FEC00420BD8 /* Tiles */; };
 		1951170C196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
 		1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170D196C9B7500622136 /* CoreGraphics.framework */; };
 		19511710196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
 		19511712196C9B7500622136 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19511711196C9B7500622136 /* SpriteKit.framework */; };
-		19511718196C9B7500622136 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19511716196C9B7500622136 /* InfoPlist.strings */; };
 		1951171A196C9B7500622136 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511719196C9B7500622136 /* main.m */; };
 		1951171E196C9B7500622136 /* EvoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951171D196C9B7500622136 /* EvoAppDelegate.m */; };
 		19511727196C9B7500622136 /* EvoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511726196C9B7500622136 /* EvoViewController.m */; };
@@ -38,8 +41,6 @@
 		19F2A8A0196D230F00BDD56B /* EvoCreatureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */; };
 		19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8A8196D300500BDD56B /* EvoDataManager.m */; };
 		19F2A8B2196F82E100BDD56B /* EvoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8B1196F82E100BDD56B /* EvoObject.m */; };
-		19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
-		19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
 		19F2A8FE19708E9E00BDD56B /* EvoScriptManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A8FD19708E9E00BDD56B /* EvoScriptManager.m */; };
 /* End PBXBuildFile section */
 
@@ -54,10 +55,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		19395A401970F14B00420BD8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Evo Hex/Assets"; sourceTree = "<group>"; };
-		19395A421970F15400420BD8 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = "Evo Hex/Data"; sourceTree = "<group>"; };
 		19395A461971463500420BD8 /* EvoScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoScript.h; sourceTree = "<group>"; };
 		19395A471971463500420BD8 /* EvoScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoScript.m; sourceTree = "<group>"; };
+		19395A6D19725FDB00420BD8 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = "Evo Hex/Data"; sourceTree = "<group>"; };
+		19395A6F19725FE400420BD8 /* Sprites */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sprites; path = "Evo Hex/Sprites"; sourceTree = "<group>"; };
+		19395A7119725FEC00420BD8 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Tiles; path = "Evo Hex/Tiles"; sourceTree = "<group>"; };
 		19511708196C9B7500622136 /* Evo Hex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evo Hex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1951170B196C9B7500622136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1951170D196C9B7500622136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,8 +146,9 @@
 		195116FF196C9B7500622136 = {
 			isa = PBXGroup;
 			children = (
-				19395A421970F15400420BD8 /* Data */,
-				19395A401970F14B00420BD8 /* Assets */,
+				19395A7119725FEC00420BD8 /* Tiles */,
+				19395A6F19725FE400420BD8 /* Sprites */,
+				19395A6D19725FDB00420BD8 /* Data */,
 				19511713196C9B7500622136 /* Evo Hex */,
 				1951173A196C9B7500622136 /* Evo HexTests */,
 				1951170A196C9B7500622136 /* Frameworks */,
@@ -333,11 +336,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19395A411970F14B00420BD8 /* Assets in Resources */,
-				19F2A8D7196FA1DE00BDD56B /* Main_iPhone.storyboard in Resources */,
-				19F2A8D8196FA1DE00BDD56B /* Main_iPad.storyboard in Resources */,
+				19395A7219725FEC00420BD8 /* Tiles in Resources */,
+				19395A7019725FE400420BD8 /* Sprites in Resources */,
+				19395A6E19725FDB00420BD8 /* Data in Resources */,
+				19395A6019725BD500420BD8 /* Main_iPad.storyboard in Resources */,
+				19395A5F19725BCD00420BD8 /* Main_iPhone.storyboard in Resources */,
 				1951172E196C9B7500622136 /* Images.xcassets in Resources */,
-				19511718196C9B7500622136 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@
 
 - (void) setTime:(NSNumber *) time;
 
-- (BOOL) addScript:(NSArray *)script withName:(NSString *)name;
+- (BOOL) addScript:(EvoScript *)script;
 - (BOOL) executeScriptNamed:(NSString *)name withSource:(id)source;
 - (BOOL) executeScript:(EvoScript *)script withSource:(id)source;
 

@@ -105,9 +105,6 @@ static void *deathWatch = &deathWatch;
         SKNode *touchedNode;
         for (SKNode<HexProtocol> *node in nodes) {
             if (![node.name isEqualToString:@"Hex"]) {
-                if ([node.name isEqualToString:@"Player"]) {
-                    //[(EvoCreature *)node kill];
-                }
                 continue;
             }
             distance = pow([node getGridLoc].x - location.x, 2) +
@@ -127,6 +124,18 @@ static void *deathWatch = &deathWatch;
         if (distanceFromPlayer > 3000.0) {
             //Not Adjacent
         } else if (touchedNode) {
+            EvoCreature *creature = (EvoCreature *)[(Hex *)touchedNode contents];
+            if ([[creature name] isEqualToString:@"Player"]) {
+                    NSLog(@"Before:");
+                    NSLog(@"health:%f, healRate:%f, energy:%f, energyRate:%f, nutrients:%f", [creature health], [creature healRate], [creature energy], [creature energyRate], [creature nutrients]);
+                    
+                    [[EvoScriptManager scriptManager] executeScriptNamed:@"heal" withSource:creature];
+                    
+                    NSLog(@"After:");
+                    NSLog(@"health:%f, healRate:%f, energy:%f, energyRate:%f, nutrients:%f", [creature health], [creature healRate], [creature energy], [creature energyRate], [creature nutrients]);
+                    break;
+            }
+            
             //Adjacent
             if ([(Hex *)touchedNode type] != WaterHex) {
                 if ([[(Hex *)touchedNode contents].name isEqualToString:@"Computer"]) {
@@ -152,6 +161,7 @@ static void *deathWatch = &deathWatch;
                         [newCreature setPosition:[randomHex getGridLoc]];
                         [_world addChild:newCreature];
                     }
+                    [[_player hex] setContents:nil];
                     [_player setHex:(Hex *)touchedNode];
                     [(Hex *)touchedNode setContents:_player];
                     [_player setPosition:[(Hex *)touchedNode getGridLoc]];

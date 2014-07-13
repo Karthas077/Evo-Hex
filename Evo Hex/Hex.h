@@ -1,5 +1,6 @@
 #import <SpriteKit/SpriteKit.h>
 #import "HexProtocol.h"
+@class EvoObject;
 
 typedef NS_ENUM(NSInteger, HexType)
 {
@@ -20,7 +21,7 @@ static NSString * const hexTextures[] =
 
 @property (nonatomic) CGPoint gridLoc;
 @property (nonatomic) NSInteger type;
-@property (weak) SKSpriteNode *contents;
+@property (weak) EvoObject *contents;
 @property NSInteger x;
 @property NSInteger y;
 @property NSInteger z;

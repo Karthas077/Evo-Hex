@@ -23,6 +23,14 @@
 @property CGFloat mass;
 @property CGFloat volume;
 
+
+//FOR SCRIPT TESTING
+@property CGFloat healRate;
+@property CGFloat energy;
+@property CGFloat energyRate;
+@property CGFloat nutrients;
+//FOR SCRIPT TESTING
+
 -(EvoCreature *) initWithID:(NSUInteger) ID;
 
 -(void) attachPart:(EvoBodyPart *) part;

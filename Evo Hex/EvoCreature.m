@@ -24,6 +24,10 @@
         _evolutions = [[NSHashTable alloc] init];
         _creatureID = ID;
         [self setHealth:100];
+        [self setHealRate:10];
+        [self setEnergy:50];
+        [self setEnergyRate:10];
+        [self setNutrients:40];
     }
     return self;
 }

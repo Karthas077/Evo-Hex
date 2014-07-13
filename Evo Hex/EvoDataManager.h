@@ -33,12 +33,12 @@
 - (EvoMaterial *) parseMaterial:(NSString *)file;
 - (NSArray *) loadTissues;
 - (EvoTissue *) parseTissue:(NSString *)file;
-//- (void) loadScripts;
-//- (NSArray *) parseScript:(NSString *)file;
 - (NSArray *) loadBodyParts;
 - (EvoBodyPart *) parseBodyPart:(NSString *)file;
 - (NSArray *) loadEvolutions;
 - (EvoEvolution *) parseEvolution:(NSString *)file;
 - (NSArray *) loadCreatures;
 - (EvoCreature *) parseCreature:(NSString *)file;
+- (NSArray *) loadScripts;
+- (EvoScript *) parseScript:(NSString *)file;
 @end

@@ -10,6 +10,7 @@
 
 @interface EvoScript : NSObject
 
+@property NSString *name;
 @property NSString *label;
 @property NSArray *script;
 @property id source;
