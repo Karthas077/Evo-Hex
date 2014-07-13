@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EvoScript : NSObject
+@interface EvoScript : NSObject <NSCoding>
 
 @property NSString *name;
 @property NSString *label;

@@ -59,7 +59,7 @@
     
     
     [newCreature setName:@"Computer"];
-    [newCreature setTexture:[SKTexture textureWithImageNamed:@"Bear_Sprite.png"]];
+    [newCreature setTexture:[SKTexture textureWithImageNamed:@"Sprites/Bear_Sprite.png"]];
     [newCreature setScale:0.5];
     [newCreature setZPosition:10];
     

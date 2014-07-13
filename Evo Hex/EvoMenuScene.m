@@ -75,9 +75,9 @@
     EvoDataManager *dataManager = [EvoDataManager dataManager];
     [dataManager setModList:[[NSArray alloc] initWithObjects:@"Core", nil] ];
     if([dataManager setupModules]) {
-        /*for (EvoScript *script in [dataManager loadScripts]) {
+        for (EvoScript *script in [dataManager loadScripts]) {
             [[EvoScriptManager scriptManager] addScript:script];
-        }*/
+        }
         
         _hasStarted = true;
         

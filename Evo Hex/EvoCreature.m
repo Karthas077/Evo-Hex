@@ -12,7 +12,7 @@
 
 - (EvoCreature *) initWithID:(NSUInteger) ID
 {
-    self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Gorilla_Sprite.png"]];
+    self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Sprites/Gorilla_Sprite.png"]];
     if (self) {
         _bodyParts = [[NSMutableDictionary alloc] init];
         //For all organ types

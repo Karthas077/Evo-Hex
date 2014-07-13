@@ -1,1 +1,1 @@
-node:[leaf:[self:health:%f+%f:health:healRate]:self:node:[leaf:[self:energy:%f+%f:energy:energyRate]:self:leaf:[self:nutrients:%f-10:nutrients]:self]:self]
+node:[leaf:[self:health:%f+%f:health:healRate]:self:node:[leaf:[self:energy:%f+%f:energy:energyRate]:self:leaf:[self:nutrients:%f-5:nutrients]:self]:self]

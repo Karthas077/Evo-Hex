@@ -98,10 +98,22 @@
                 NSLog(@"%@ Does not exist", [file lastPathComponent]);
             }
             if ([fileManager fileExistsAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] isDirectory:NULL]) {
-                NSLog(@"%@ Already Installed", [file lastPathComponent]);
+                //Updating .dat files
+                NSDirectoryEnumerator *dirEnum = [fileManager enumeratorAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath]];
+                NSString *file;
+                while ((file = [dirEnum nextObject])) {
+                    NSString *libraryPath = [[appSupportPath stringByAppendingPathComponent:relativePath] stringByAppendingPathComponent:[file lastPathComponent]];
+                    NSString *bundlePath = [[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath] stringByAppendingPathComponent:file];
+                    if ([fileManager fileExistsAtPath:libraryPath isDirectory:NO]) {
+                        [fileManager removeItemAtPath:libraryPath error:nil];
+                    }
+                    if(![fileManager copyItemAtPath:bundlePath toPath:libraryPath error:&error]) {
+                        NSLog(@"%@: %@", file, error.localizedDescription);
+                        return NO;
+                    }
+                }
             }
             else if(![fileManager copyItemAtPath:[[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath] toPath:[appSupportPath stringByAppendingPathComponent:relativePath] error:&error]) {
-                
                 NSLog(@"%@: %@", [[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:relativePath], error.localizedDescription);
                 return NO;
             }
@@ -260,7 +272,18 @@
 
 - (EvoScript *) parseScript:(NSString *) file
 {
-    NSLog(@"Parsing Script:\n%@", file);
+    NSString *archivePath = [[file stringByDeletingPathExtension] stringByAppendingPathExtension:@"arc"];
+    if ([[[[NSFileManager defaultManager] attributesOfItemAtPath:file error:nil] objectForKey:NSFileModificationDate] compare:
+         [[[NSFileManager defaultManager] attributesOfItemAtPath:archivePath error:nil] objectForKey:NSFileModificationDate]] == NSOrderedAscending) {
+        
+        NSLog(@"Loading %@", [archivePath lastPathComponent]);
+        //Load From Archive!
+        
+        EvoScript *newScript = [NSKeyedUnarchiver unarchiveObjectWithFile:archivePath];
+        return newScript;
+    }
+    
+    NSLog(@"Compiling %@", [file lastPathComponent]);
     //leaf:[targetName:targetKey:expression:parameters:...]
     //node:[label1:script1:source1:label2:script2:source2:...]
     //delay:[label:script:source:time]
@@ -310,7 +333,7 @@
                                                          offset:offset
                                                        template:@"$0"];
             
-            NSString* replacement = [NSString stringWithFormat:@"qrrbrblll%d", [reverseLookup count]];
+            NSString* replacement = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]];
             
             //NSLog(@"replacing:%@ with:%@", match, replacement);
             
@@ -332,7 +355,7 @@
     NSString *testString = @"qrrbrblll0";
     
     for (NSUInteger i=1; i<numReplacements; i++) {
-        testString = [NSString stringWithFormat:@"qrrbrblll%d", i];
+        testString = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)i];
         tempArray = [[reverseLookup objectForKey:testString] mutableCopy];
         for (NSUInteger j=1; j<[tempArray count]; j++) {
             NSRange tempRange = [[tempArray objectAtIndex:j] rangeOfString:@"qrrbrblll"];
@@ -341,19 +364,24 @@
             }
             else {
                 NSUInteger toReplace = [[[tempArray objectAtIndex:j] substringFromIndex:(tempRange.location + tempRange.length)] integerValue];
-                [tempArray setObject:[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%d", toReplace]] atIndexedSubscript:j];
+                [tempArray setObject:[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)toReplace]] atIndexedSubscript:j];
             }
         }
         [reverseLookup setObject:tempArray forKey:testString];
     }
     
-    scriptData = [[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%d", [reverseLookup count]-1]] mutableCopy];
+    scriptData = [[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]-1]] mutableCopy];
+    
     
     EvoScript *newScript = [[EvoScript alloc] initScript:[scriptData copy]];
     [newScript setLabel:label];
     [newScript setName:[[file lastPathComponent] stringByDeletingPathExtension]];
-    NSLog(@"Created script named %@ with label %@", [[file lastPathComponent] stringByDeletingPathExtension], label);
+    //NSLog(@"Created script named %@ with label %@", [[file lastPathComponent] stringByDeletingPathExtension], label);
     
+    
+    [NSKeyedArchiver archiveRootObject:newScript toFile:archivePath];
+    
+    //[fileManager removeItemAtPath:[appSupportPath stringByAppendingPathComponent:relativePath] error:&error];
     
     return newScript;
 }

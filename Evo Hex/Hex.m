@@ -7,7 +7,7 @@
 {
     self = [super init];
 	if (self) {
-        self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Grass_Hex"]];
+        self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Tiles/Grass_Hex.png"]];
         self.size = CGSizeMake(50, 50);
 	}
 	return self;
@@ -17,7 +17,7 @@
     self = [super init];
     if(self) {
         self =
-        [super initWithTexture:[SKTexture textureWithImageNamed:@"Grass_Hex"]];
+        [super initWithTexture:[SKTexture textureWithImageNamed:@"Tiles/Grass_Hex.png"]];
         self.size = CGSizeMake(50, 50);
         self.x = x;
         self.y = y;

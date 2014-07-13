@@ -42,7 +42,7 @@ static void *deathWatch = &deathWatch;
         
         [_player setName:@"Player"];
         [_player setHex: playerSpawn];
-        [_player setTexture:[SKTexture textureWithImageNamed:@"Gorilla_Sprite.png"]];
+        [_player setTexture:[SKTexture textureWithImageNamed:@"Sprites/Gorilla_Sprite.png"]];
         [_player setScale:0.5];
         [playerSpawn setContents: _player];
         [_player setPosition:[playerSpawn getGridLoc]]; //

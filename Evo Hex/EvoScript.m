@@ -32,4 +32,25 @@
     [[_source valueForKey:[_script objectAtIndex:0]] setValue:expResult forKey:[_script objectAtIndex:1]];
 }
 
+#pragma mark - NSCoding
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (!self) {
+        return nil;
+    }
+    
+    self.name = [decoder decodeObjectForKey:@"name"];
+    self.label = [decoder decodeObjectForKey:@"label"];
+    self.script = [decoder decodeObjectForKey:@"script"];
+    
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.name forKey:@"name"];
+    [encoder encodeObject:self.label forKey:@"label"];
+    [encoder encodeObject:self.script forKey:@"script"];
+}
+
 @end
