@@ -1,43 +1,60 @@
-if:
+0
+0
+^ifelse
 [
-    and:
+    ^and
     [
-        greaterthan:
+        ^greaterthan
         [
-            [%f:nutrients]:
+            ^[%f:nutrients]:
             0
         ]:
-        lessthan:
+        ^lessthan
         [
-            [%f:health]:
+            ^[%f:health]:
             100
         ]
     ]:
-    split:
+    ^run
     [
-        3:
-        store:
+        ^store
         [
-            evaluate:
-                [%f+%f:health:healRate]:
-            self:
+            ^[%f+%f:health:healRate]:
             health
         ]:
-        store:
+        ^store
         [
-            evaluate:
-                [%f+%f:energy:energyRate]:
-            self:
-            energy
-        ]:
-        store:
-        [
-            evaluate:
-                [%f-5:nutrients]:
-            self:
+            ^[%f-5:nutrients]:
             nutrients
         ]
     ]:
-    donothing:
-    nothing
+    ^if
+    [
+        ^and
+        [
+            ^greaterthan
+            [
+                ^[%f:nutrients]:
+                0
+            ]:
+            ^lessthan
+            [
+                ^[%f:energy]:
+                100
+            ]
+        ]:
+        ^run
+        [
+            ^store
+            [
+                ^[%f+%f:energy:energyRate]:
+                energy
+            ]:
+            ^store
+            [
+                ^[%f-5:nutrients]:
+                nutrients
+            ]
+        ]
+    ]
 ]

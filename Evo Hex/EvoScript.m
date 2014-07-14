@@ -10,15 +10,6 @@
 
 @implementation EvoScript
 
-- (EvoScript *) initScript:(NSArray *)script
-{
-    self = [super init];
-    if (self) {
-        _script = script;
-    }
-    return self;
-}
-
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)decoder {
@@ -28,16 +19,29 @@
     }
     
     self.name = [decoder decodeObjectForKey:@"name"];
-    self.label = [decoder decodeObjectForKey:@"label"];
-    self.script = [decoder decodeObjectForKey:@"script"];
+    self.function = [decoder decodeIntegerForKey:@"function"];
+    self.code = [decoder decodeObjectForKey:@"code"];
+    self.numArgs = [decoder decodeIntegerForKey:@"numArgs"];
+    self.returnType = [decoder decodeIntegerForKey:@"returnType"];
     
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     [encoder encodeObject:self.name forKey:@"name"];
-    [encoder encodeObject:self.label forKey:@"label"];
-    [encoder encodeObject:self.script forKey:@"script"];
+    [encoder encodeInteger:self.function forKey:@"function"];
+    [encoder encodeObject:self.code forKey:@"code"];
+    [encoder encodeInteger:self.numArgs forKey:@"numArgs"];
+    [encoder encodeInteger:self.returnType forKey:@"returnType"];
+}
+
+- (NSString *) description
+{
+    NSString *result = @"";
+    for (NSObject *obj in _code) {
+        result = [result stringByAppendingString:[NSString stringWithFormat:@"%@", obj]];
+    }
+    return result;
 }
 
 @end

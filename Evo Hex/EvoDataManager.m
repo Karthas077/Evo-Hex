@@ -271,7 +271,7 @@
 }
 
 - (EvoScript *) parseScript:(NSString *) file
-{
+{  
     //Archiving Disabled until properly Profiled
     /*NSString *archivePath = [[file stringByDeletingPathExtension] stringByAppendingPathExtension:@"arc"];
     if ([[[[NSFileManager defaultManager] attributesOfItemAtPath:file error:nil] objectForKey:NSFileModificationDate] compare:
@@ -285,76 +285,118 @@
     }*/
     
     NSLog(@"Compiling %@", [file lastPathComponent]);
-    //store:[label:script:source:targetName:targetKey]
-    //evaluate:[expression:parameters:...]
-    //split:[label1:script1:source1:label2:script2:source2:...]
-    //delay:[label:script:source:time]
-    //repeat:[label:script:source:time]
-    //call:[scriptName:source]
-    //if:[label:conditional:source:label:true:source:label:false:source]
-    //lessthan(c):[object1:object2]
-    //greaterthan(c):[object1:object2]
-    //equalto(c):[object1:object2]
-    //and:[label:conditional:source]
-    //not:[label:conditional:source]
+    //store[script:targetName:targetKey]
+    //storelocal[script:key]
+    //retrieve[targetName:targetKey]
+    //retrievelocal[key]
+    //evaluate[expression:parameters:...]
+    //run[script1:script2:...]
+    //delay[script:time]
+    //repeat[script:time]
+    //call[scriptName]
+    //defer[script:newsource]
+    //if[conditional:true]
+    //ifelse[conditional:true:false]
+    //lessthan[object1:object2]
+    //greaterthan[object1:object2]
+    //equalto[object1:object2]
+    //and[conditional]
+    //not[conditional]
+    
+    EvoScript *newScript;
     
     NSError *error = nil;
     NSMutableString *contents = [[NSMutableString alloc] initWithContentsOfFile:file encoding:NSUTF8StringEncoding error:&error];
     
+    NSInteger returnType = [[contents substringToIndex:[contents rangeOfString:@"\n"].location] integerValue];
+    contents = [[contents substringFromIndex:[contents rangeOfString:@"\n"].location+1] mutableCopy];
+    NSInteger numArgs = [[contents substringToIndex:[contents rangeOfString:@"\n"].location] integerValue];
+    contents = [[contents substringFromIndex:[contents rangeOfString:@"\n"].location+1] mutableCopy];
+    
     NSArray *whitelessArray = [contents componentsSeparatedByCharactersInSet :[NSCharacterSet characterSetWithCharactersInString:@" \t\n"]];
     contents = [[whitelessArray componentsJoinedByString:@""] mutableCopy];
     
-    NSString *label = [contents substringToIndex:[contents rangeOfString:@":"].location];
-    NSLog(@"Label:\n%@", label);
-    contents = [[contents substringFromIndex:[contents rangeOfString:@":"].location+1] mutableCopy];
+    NSLog(@"Contents:\n%@", contents);
     
-    NSMutableDictionary *reverseLookup = [[NSMutableDictionary alloc] init];
+    NSString *label;
+    
+    NSMutableDictionary *codeLookup = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *labelLookup = [[NSMutableDictionary alloc] init];
+    NSInteger function = EVO_NumFunctions;
+    for (int i = 0; i < EVO_NumFunctions; i++) {
+        if ([functions[i] isEqualToString:label]) {
+            function = i;
+            break;
+        }
+    }
+    
+    newScript = [[EvoScript alloc] init];
+    
+    [newScript setName:[[file lastPathComponent] stringByDeletingPathExtension]];
+    [newScript setReturnType:returnType];
+    [newScript setNumArgs:numArgs];
     
     
     while ([contents rangeOfString:@"qrrbrblll"].location != 0) {
-        
-        //NSLog(@"Contents:\n%@", contents);
-        
+        NSLog(@"Contents:\n%@", contents);
+        NSRange labelStart = [contents rangeOfString:@"^" options:NSBackwardsSearch range:NSMakeRange(0, [contents length])];
         NSRange subscriptStart = [contents rangeOfString:@"[" options:NSBackwardsSearch range:NSMakeRange(0, [contents length])];
         NSRange subscriptEnd = [contents rangeOfString:@"]" options:0 range:NSMakeRange(subscriptStart.location, [contents length] - subscriptStart.location)];
         NSRange subscript = NSMakeRange(subscriptStart.location, subscriptEnd.location - subscriptStart.location + 1);
-        NSString* match = [contents substringWithRange:subscript];
-        NSString* replacement = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]];
+        NSRange labelRange = NSMakeRange(labelStart.location, subscriptStart.location - labelStart.location);
+        NSString *match = [contents substringWithRange:subscript];
+        NSString *replacement = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[codeLookup count]];
+        label = [contents substringWithRange:NSMakeRange(labelRange.location + 1,labelRange.length - 1)];
+        if ([label isEqualToString:@""]) {
+            label = @"evaluate";
+        }
+        for (int i = 0; i < EVO_NumFunctions; i++) {
+            if ([functions[i] isEqualToString:label]) {
+                function = i;
+                break;
+            }
+        }
         
-        NSLog(@"replacing:%@ with:%@", match, replacement);
+        NSLog(@"for label:%@ replacing:%@ with:%@", label, match, replacement);
         
-        [reverseLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
+        [codeLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
+        [labelLookup setObject:[NSNumber numberWithInt:function] forKey:replacement];
         
         // make the replacement
         [contents replaceCharactersInRange:subscript withString:replacement];
-        
+        [contents replaceCharactersInRange:labelRange withString:@""];
     }
     
     NSMutableArray *scriptData;
     NSMutableArray *tempArray;
-    NSUInteger numReplacements = [reverseLookup count];
+    NSUInteger numReplacements = [codeLookup count];
     NSString *testString = @"qrrbrblll0";
+    EvoScript *subScript;
     
     for (NSUInteger i=1; i<numReplacements; i++) {
         testString = [NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)i];
-        tempArray = [[reverseLookup objectForKey:testString] mutableCopy];
+        tempArray = [[codeLookup objectForKey:testString] mutableCopy];
         for (NSUInteger j=0; j<[tempArray count]; j++) {
             NSRange tempRange = [[tempArray objectAtIndex:j] rangeOfString:@"qrrbrblll"];
             if (tempRange.location != NSNotFound) {
                 NSUInteger toReplace = [[[tempArray objectAtIndex:j] substringFromIndex:(tempRange.location + tempRange.length)] integerValue];
-                [tempArray setObject:[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)toReplace]] atIndexedSubscript:j];
+                function = [[labelLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)toReplace]] integerValue];
+                subScript = [[EvoScript alloc] init];
+                [subScript setFunction:function];
+                [subScript setCode:[codeLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)toReplace]]];
+                [subScript setReturnType:returnValues[function]];
+                [tempArray setObject:subScript atIndexedSubscript:j];
             }
         }
-        [reverseLookup setObject:tempArray forKey:testString];
+        [codeLookup setObject:tempArray forKey:testString];
     }
     
-    scriptData = [[reverseLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[reverseLookup count]-1]] mutableCopy];
+    scriptData = [[codeLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[codeLookup count]-1]] mutableCopy];
     
     NSLog(@"%@", scriptData);
     
-    EvoScript *newScript = [[EvoScript alloc] initScript:[scriptData copy]];
-    [newScript setLabel:label];
-    [newScript setName:[[file lastPathComponent] stringByDeletingPathExtension]];
+    [newScript setCode:scriptData];
+    [newScript setFunction:[[labelLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[codeLookup count]-1]] integerValue]];
     //NSLog(@"Created script named %@ with label %@", [[file lastPathComponent] stringByDeletingPathExtension], label);
     
     

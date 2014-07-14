@@ -124,27 +124,30 @@ static void *deathWatch = &deathWatch;
         if (distanceFromPlayer > 3000.0) {
             //Not Adjacent
         } else if (touchedNode) {
-            if (![[[(Hex *)touchedNode contents] name] isEqualToString:@"Player"]) {
-                    [[EvoScriptManager scriptManager] executeScriptNamed:@"heal" withSource:_player];
-            }
             //Adjacent
             if ([(Hex *)touchedNode type] != WaterHex) {
-                if ([[(Hex *)touchedNode contents].name isEqualToString:@"Computer"]) {
+                if ([(Hex *)touchedNode contents] != nil && ![[(Hex *)touchedNode contents].name isEqualToString:@"Player"]) {
+                    NSLog(@"Attacking!");
                     [_player setTarget:[(Hex *)touchedNode contents]];
-                    //[[EvoScriptManager scriptManager] executeScriptNamed:@"attack" withSource:_player];
-                    [_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
+                    [[EvoScriptManager scriptManager] startScriptNamed:@"attack" withSource:_player];
+                    //[_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
                     if ([(EvoObject *)[(Hex *)touchedNode contents] health] <= 0) {
+                        NSLog(@"Feeding!");
+                        [[EvoScriptManager scriptManager] startScriptNamed:@"feed" withSource:_player];
                         [[(Hex *)touchedNode contents] removeFromParent];
                     }
                     else {
-                        [(EvoCreature *)[(Hex *)touchedNode contents] attack:_player];
+                        [(EvoCreature *)[(Hex *)touchedNode contents] setTarget:_player];
+                        [[EvoScriptManager scriptManager] startScriptNamed:@"attack" withSource:[(Hex *)touchedNode contents]];
+                        //[(EvoCreature *)[(Hex *)touchedNode contents] attack:_player];
                     }
                 }
                 else {
-                    if (arc4random()%10 == 0) {
+                    [[EvoScriptManager scriptManager] startScriptNamed:@"heal" withSource:_player];
+                    if (arc4random()%8 == 0) {
                         NSLog(@"Spawning new enemy");
-                        int randomX = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
-                        int randomY = (((arc4random()%2)*2)-1) * (6 - (arc4random() % 3));
+                        int randomX = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
+                        int randomY = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
                         
                         Hex *randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
                         EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
@@ -159,8 +162,6 @@ static void *deathWatch = &deathWatch;
                     [(Hex *)touchedNode setContents:_player];
                     [_player setPosition:[(Hex *)touchedNode getGridLoc]];
                 }
-                
-                
             }
         }
     }

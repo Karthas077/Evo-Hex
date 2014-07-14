@@ -1,0 +1,15 @@
+0
+0
+^run
+[
+    ^store
+    [
+        ^[%f+%f:nutrients:target.nutrients]:
+        nutrients
+    ]:
+    ^store
+    [
+        ^[%f+1:attackPower]:
+        attackPower
+    ]
+]
