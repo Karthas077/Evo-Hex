@@ -290,6 +290,7 @@
     //retrieve[targetName:targetKey]
     //retrievelocal[key]
     //evaluate[expression:parameters:...]
+    //random[min:max]
     //run[script1:script2:...]
     //delay[script:time]
     //repeat[script:time]
@@ -316,7 +317,7 @@
     NSArray *whitelessArray = [contents componentsSeparatedByCharactersInSet :[NSCharacterSet characterSetWithCharactersInString:@" \t\n"]];
     contents = [[whitelessArray componentsJoinedByString:@""] mutableCopy];
     
-    NSLog(@"Contents:\n%@", contents);
+    //NSLog(@"Contents:\n%@", contents);
     
     NSString *label;
     
@@ -338,7 +339,7 @@
     
     
     while ([contents rangeOfString:@"qrrbrblll"].location != 0) {
-        NSLog(@"Contents:\n%@", contents);
+        //NSLog(@"Contents:\n%@", contents);
         NSRange labelStart = [contents rangeOfString:@"^" options:NSBackwardsSearch range:NSMakeRange(0, [contents length])];
         NSRange subscriptStart = [contents rangeOfString:@"[" options:NSBackwardsSearch range:NSMakeRange(0, [contents length])];
         NSRange subscriptEnd = [contents rangeOfString:@"]" options:0 range:NSMakeRange(subscriptStart.location, [contents length] - subscriptStart.location)];
@@ -357,7 +358,7 @@
             }
         }
         
-        NSLog(@"for label:%@ replacing:%@ with:%@", label, match, replacement);
+        //NSLog(@"for label:%@ replacing:%@ with:%@", label, match, replacement);
         
         [codeLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
         [labelLookup setObject:[NSNumber numberWithInt:function] forKey:replacement];
@@ -393,7 +394,7 @@
     
     scriptData = [[codeLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[codeLookup count]-1]] mutableCopy];
     
-    NSLog(@"%@", scriptData);
+    //NSLog(@"%@", scriptData);
     
     [newScript setCode:scriptData];
     [newScript setFunction:[[labelLookup objectForKey:[NSString stringWithFormat:@"qrrbrblll%lu", (unsigned long)[codeLookup count]-1]] integerValue]];

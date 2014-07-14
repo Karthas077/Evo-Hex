@@ -67,7 +67,21 @@ static void *deathWatch = &deathWatch;
          forKeyPath:@"health"
          options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
          context:deathWatch];
+        [_player
+         addObserver:self
+         forKeyPath:@"energy"
+         options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+         context:deathWatch];
+        [_player
+         addObserver:self
+         forKeyPath:@"nutrients"
+         options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
+         context:deathWatch];
         [[EvoCreatureManager creatureManager] spawnCreature];
+        
+        [_player setHealth:100];
+        [_player setEnergy:100];
+        [_player setNutrients:50];
         
     }
     return self;
@@ -126,15 +140,17 @@ static void *deathWatch = &deathWatch;
         } else if (touchedNode) {
             //Adjacent
             if ([(Hex *)touchedNode type] != WaterHex) {
+                [[EvoScriptManager scriptManager] startScriptNamed:@"heal" withSource:_player];
                 if ([(Hex *)touchedNode contents] != nil && ![[(Hex *)touchedNode contents].name isEqualToString:@"Player"]) {
-                    NSLog(@"Attacking!");
+                    //NSLog(@"Attacking!");
                     [_player setTarget:[(Hex *)touchedNode contents]];
                     [[EvoScriptManager scriptManager] startScriptNamed:@"attack" withSource:_player];
                     //[_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
                     if ([(EvoObject *)[(Hex *)touchedNode contents] health] <= 0) {
-                        NSLog(@"Feeding!");
+                        //NSLog(@"Feeding!");
                         [[EvoScriptManager scriptManager] startScriptNamed:@"feed" withSource:_player];
                         [[(Hex *)touchedNode contents] removeFromParent];
+                        [[EvoCreatureManager creatureManager] setNumCreatures:[[EvoCreatureManager creatureManager] numCreatures] - 1];
                     }
                     else {
                         [(EvoCreature *)[(Hex *)touchedNode contents] setTarget:_player];
@@ -143,13 +159,20 @@ static void *deathWatch = &deathWatch;
                     }
                 }
                 else {
-                    [[EvoScriptManager scriptManager] startScriptNamed:@"heal" withSource:_player];
-                    if (arc4random()%8 == 0) {
-                        NSLog(@"Spawning new enemy");
-                        int randomX = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
-                        int randomY = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
+                    if (arc4random()%(2+[[EvoCreatureManager creatureManager] numCreatures]/4) == 0) {
+                        //NSLog(@"Spawning new enemy");
+                        int randomX;
+                        int randomY;
+                        int randomZ;
+                        Hex *randomHex;
                         
-                        Hex *randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
+                        do {
+                            randomX = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
+                            randomY = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
+                            randomZ = randomX+randomY;
+                            randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
+                        } while ([randomHex type] == WaterHex || MAX(abs(_player.hex.x - randomHex.x), MAX(abs(_player.hex.y - randomHex.y), abs(_player.hex.z - randomHex.z))) <= 3);
+                        
                         EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
                         
                         [newCreature setHex:randomHex];
@@ -223,19 +246,48 @@ static void *deathWatch = &deathWatch;
                        context:(void *)context
 {
     
-    if (context == deathWatch) {
+    if (context == deathWatch && !_gameOver) {
         //Update Health Bar
-        if (_player.health <= 0.0) {
-            [_ui.healthBar setSize:CGSizeMake(0, _ui.healthBar.size.height)];
-            SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
-            gameOver.zPosition = 20;
-            gameOver.text = @"Game Over";
-            gameOver.fontSize = 30;
-            [self addChild:gameOver];
-            _gameOver = YES;
+        if ([keyPath isEqualToString:@"health"]) {
+            if ([_player health] <= 0.0) {
+                [[_ui healthBar] setSize:CGSizeMake(0, [_ui healthBar].size.height)];
+                _gameOver = YES;
+            }
+            else {
+                [[_ui healthBar] setSize:CGSizeMake([_player health]/100 * (self.size.width/3 - 20), [_ui healthBar].size.height)];
+            }
+        }
+        else if ([keyPath isEqualToString:@"energy"]) {
+            if ([_player energy] <= 0.0) {
+                [[_ui energyBar] setSize:CGSizeMake(0, [_ui energyBar].size.height)];
+                _gameOver = YES;
+            }
+            else {
+                [[_ui energyBar] setSize:CGSizeMake([_player energy]/100 * (self.size.width/3 - 20), [_ui energyBar].size.height)];
+            }
         }
         else {
-            [_ui.healthBar setSize:CGSizeMake(_player.health/100 * (self.size.width/3 - 20), _ui.healthBar.size.height)];
+            if ([_player nutrients] <= 0.0) {
+                [[_ui nutrientsBar] setSize:CGSizeMake(0, [_ui nutrientsBar].size.height)];
+            }
+            else  if ([_player nutrients] < 200){
+                [[_ui nutrientsBar] setSize:CGSizeMake([_player nutrients]/200 * (self.size.width/3 - 20), [_ui nutrientsBar].size.height)];
+            }
+            else {
+                [[_ui nutrientsBar] setSize:CGSizeMake((self.size.width/3 - 20), [_ui nutrientsBar].size.height)];
+                SKLabelNode *levelUp = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
+                [levelUp setZPosition:20];
+                [levelUp setText:@"You are ready to evolve!"];
+                [levelUp setFontSize:30];
+                [self addChild:levelUp];
+            }
+        }
+        if (_gameOver) {
+            SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
+            [gameOver setZPosition:20];
+            [gameOver setText:@"You have died."];
+            [gameOver setFontSize:30];
+            [self addChild:gameOver];
         }
         return;
     }

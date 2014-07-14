@@ -103,13 +103,23 @@
         case EVO_Evaluate:
         {
             NSMutableArray *arguments = [[NSMutableArray alloc] init];
-            if ([[script code] count] > 1) {
-                for (NSString *key in [[script code] subarrayWithRange:NSMakeRange(1, [[script code] count] - 1)]) {
-                    [arguments addObject:[source valueForKeyPath:key]];
+            for (int i = 1; i < [[script code] count]; i++) {
+                if ([[[script code] objectAtIndex:i] class] == [EvoScript class]) {
+                    [arguments addObject:[self startScript:[[script code] objectAtIndex:i] withSource:source]];
+                }
+                else {
+                    [arguments addObject:[source valueForKeyPath:[[script code] objectAtIndex:i]]];
                 }
             }
             NSExpression *exp = [NSExpression expressionWithFormat:[[script code] objectAtIndex:0] argumentArray:arguments];
             result = [exp expressionValueWithObject:nil context:nil];
+        }
+            break;
+        case EVO_Random:
+        {
+            NSInteger min = [[[script code] objectAtIndex:0] integerValue];
+            NSInteger max = [[[script code] objectAtIndex:1] integerValue];
+            result = [NSNumber numberWithInt:(arc4random()%(max-min+1))+min];
         }
             break;
         case EVO_Run:

@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, scriptFunction)
     EVO_Retrieve,
     EVO_RetrieveLocal,
     EVO_Evaluate,
+    EVO_Random,
     EVO_Run,
     EVO_Delay,
     EVO_Repeat,
@@ -37,6 +38,7 @@ static NSString * const functions[] ={
     @"retrieve",
     @"retrievelocal",
     @"evaluate",
+    @"random",
     @"run",
     @"delay",
     @"repeat",
@@ -67,6 +69,7 @@ static NSInteger const returnValues[] ={
     EVO_Object, //retrieve
     EVO_Object, //retrievelocal
     EVO_Object, //evaluate
+    EVO_Number, //random
     EVO_Boolean, //run
     EVO_Boolean, //delay
     EVO_Boolean, //repeat

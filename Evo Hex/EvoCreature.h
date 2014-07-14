@@ -30,6 +30,8 @@
 @property CGFloat energyRate;
 @property CGFloat nutrients;
 @property CGFloat attackPower;
+@property CGFloat noiseLevel;
+@property CGFloat visibility;
 @property (weak) EvoObject *target;
 //FOR SCRIPT TESTING
 
