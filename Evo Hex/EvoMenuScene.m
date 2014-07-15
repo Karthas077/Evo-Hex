@@ -78,14 +78,30 @@
         for (EvoScript *script in [dataManager loadScripts]) {
             [[EvoScriptManager scriptManager] addScript:script];
         }
+        /*for (EvoMaterial *material in [dataManager loadMaterials]) {
+            [[EvoCreatureManager creatureManager] addMaterial:material];
+        }
+        for (EvoTissue *tissue in [dataManager loadTissues]) {
+            [[EvoCreatureManager creatureManager] addTissue:tissue];
+        }
+        for (EvoBodyPart *bodyPart in [dataManager loadBodyParts]) {
+            [[EvoCreatureManager creatureManager] addBodyPart:bodyPart];
+        }
+        for (EvoEvolution *evolution in [dataManager loadEvolutions]) {
+            [[EvoCreatureManager creatureManager] addEvolution:evolution];
+        }*/
+        for (EvoCreature *creature in [dataManager loadCreatures]) {
+            [(EvoCreatureManager *)[EvoCreatureManager creatureManager] addCreature:creature];
+        }
         
         _hasStarted = true;
         
         SKTransition *reveal =
         [SKTransition revealWithDirection:SKTransitionDirectionDown duration:1.0];
-        EvoGameScene *newScene = [[EvoGameScene alloc] initWithSize:self.size];
         
-        newScene.mode = mode;
+        EvoGameScene *newScene = [[EvoGameScene alloc] initWithSize:self.size];
+        //EvoUpgradeScene *newScene = [[EvoUpgradeScene alloc] initWithSize:self.size];
+        //newScene.mode = mode;
         
         [self.scene.view presentScene:newScene transition:reveal];
     }
@@ -93,6 +109,10 @@
 
 - (void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+}
+
+-(void)dealloc {
+    NSLog(@"Main Menu scene deallocated");
 }
 
 @end

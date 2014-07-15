@@ -11,6 +11,7 @@
 
 @interface EvoEvolution : NSObject
 
+@property NSString *name;
 @property NSUInteger ID;
 
 -(EvoEvolution *) initFromFile:(NSString *) file;

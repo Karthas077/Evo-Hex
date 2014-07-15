@@ -60,12 +60,13 @@
         //NSLog(@"successfully added");
         return YES;
     }
-    NSLog(@"Unable to add %@: Duplicate name.", [script name]);
+    NSLog(@"Unable to add %@: Script is already defined.", [script name]);
     return NO;
 }
 
 - (NSObject *) startScriptNamed:(NSString *)name withSource:(id)source
 {
+    //NSLog(@"Running %@",name);
     EvoScript *script = [scripts objectForKey:name];
     return [self startScript:script withSource:source];
 }
@@ -74,10 +75,12 @@
 {
     NSObject *result = [NSNumber numberWithBool:NO];
     
+    
     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     
     //NSLog(@"label:%@",functions[[script function]]);
+    //NSLog(@"%@",[[script code] objectAtIndex:0]);
     
     switch ([script function]) {
         case EVO_Store:
@@ -95,20 +98,29 @@
         }
             break;
         case EVO_Retrieve:
-            result = [[source valueForKeyPath:[[script code] objectAtIndex:0]] objectForKey:[[script code] objectAtIndex:1]];
+            result = [[source valueForKeyPath:[[script code] objectAtIndex:0]] valueForKeyPath:[[script code] objectAtIndex:1]];
             break;
         case EVO_RetrieveLocal:
-            result = [[self localData] objectForKey:[[script code] objectAtIndex:1]];
+            result = [[self localData] valueForKeyPath:[[script code] objectAtIndex:1]];
+            break;
+        case EVO_Exists:
+            result = [NSNumber numberWithBool:([source valueForKeyPath:[[script code] objectAtIndex:0]] != nil)];
             break;
         case EVO_Evaluate:
         {
             NSMutableArray *arguments = [[NSMutableArray alloc] init];
-            for (int i = 1; i < [[script code] count]; i++) {
-                if ([[[script code] objectAtIndex:i] class] == [EvoScript class]) {
-                    [arguments addObject:[self startScript:[[script code] objectAtIndex:i] withSource:source]];
-                }
-                else {
-                    [arguments addObject:[source valueForKeyPath:[[script code] objectAtIndex:i]]];
+            if ([[[script code] objectAtIndex:1] class] == [NSArray class]) {
+                arguments = [(NSArray *)[[script code] objectAtIndex:1] mutableCopy];
+            }
+            else {
+                for (int i = 1; i < [[script code] count]; i++) {
+                    //NSLog(@"%@",[[script code] objectAtIndex:i]);
+                    if ([[[script code] objectAtIndex:i] class] == [EvoScript class]) {
+                        [arguments addObject:[self startScript:[[script code] objectAtIndex:i] withSource:source]];
+                    }
+                    else {
+                        [arguments addObject:[source valueForKeyPath:[[script code] objectAtIndex:i]]];
+                    }
                 }
             }
             NSExpression *exp = [NSExpression expressionWithFormat:[[script code] objectAtIndex:0] argumentArray:arguments];
@@ -119,7 +131,7 @@
         {
             NSInteger min = [[[script code] objectAtIndex:0] integerValue];
             NSInteger max = [[[script code] objectAtIndex:1] integerValue];
-            result = [NSNumber numberWithInt:(arc4random()%(max-min+1))+min];
+            result = [NSNumber numberWithFloat:(arc4random()%(max-min+1))+min];
         }
             break;
         case EVO_Run:
@@ -130,8 +142,10 @@
                     NSLog(@"There was an error in a script.");
                     break;
                 }
+                else {
+                    result = [NSNumber numberWithBool:YES];
+                }
             }
-            result = [NSNumber numberWithBool:YES];
         }
             break;
         case EVO_Delay:

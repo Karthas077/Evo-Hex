@@ -1,5 +1,5 @@
 //
-//  EvoUpgradeScene.h
+//  EvoUpgradeView.h
 //  Evo Hex
 //
 //  Created by Steven Buell on 7/14/14.
@@ -8,6 +8,10 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface EvoUpgradeScene : SKScene
+@interface EvoUpgradeView : UIView
+
+@property UILabel *creatureInfo;
+@property UIButton *accept;
+@property UIButton *cancel;
 
 @end

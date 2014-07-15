@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "EvoScriptManager.h"
-#import "EvoCreature.h"
+#import "EvoCreatureManager.h"
 
 @interface EvoDataManager : NSObject {
     NSArray *activeMods;

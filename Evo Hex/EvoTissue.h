@@ -53,8 +53,8 @@
 //Skeletal System (bones cartilage ligaments tendons)
 
 //Integumentary System (skin hair fat nails)
-@property Boolean energyStore;
-@property CGFloat energyMassRatio;
+@property Boolean staminaStore;
+@property CGFloat staminaMassRatio;
 
 - (EvoTissue *) init;
 - (CGFloat) getDensity;

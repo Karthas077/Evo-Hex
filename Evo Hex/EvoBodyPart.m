@@ -24,7 +24,7 @@
 }
 
 
-- (void) addTissue:(EvoTissue *)tissue
+- (void) attachTissue:(EvoTissue *)tissue
 {
     _mass += [tissue getMass];
     _volume += [tissue volume];
@@ -105,16 +105,16 @@
 
 - (void) setVolume:(CGFloat)volume
 {
-    [_creature setVolume:[_creature volume]-_volume];
+    [_creature setValue:[NSNumber numberWithFloat:[[_creature valueForKey:@"volume"] floatValue] - _volume] forKeyPath:@"volume"];
     _volume = volume;
-    [_creature setVolume:[_creature volume]+_volume];
+    [_creature setValue:[NSNumber numberWithFloat:[[_creature valueForKey:@"volume"] floatValue] + _volume] forKeyPath:@"volume"];
 }
 
 - (void) setMass:(CGFloat)mass
 {
-    [_creature setMass:[_creature mass]-_mass];
+    [_creature setValue:[NSNumber numberWithFloat:[[_creature valueForKey:@"mass"] floatValue] - _mass] forKeyPath:@"mass"];
     _mass = mass;
-    [_creature setMass:[_creature mass]+_mass];
+    [_creature setValue:[NSNumber numberWithFloat:[[_creature valueForKey:@"mass"] floatValue] + _mass] forKeyPath:@"mass"];
 }
 
 

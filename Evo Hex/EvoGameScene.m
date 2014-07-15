@@ -2,6 +2,7 @@
 
 @interface EvoGameScene ()
 @property BOOL gameOver;
+@property BOOL gamePaused;
 @end
 
 @implementation EvoGameScene
@@ -14,6 +15,12 @@ static void *deathWatch = &deathWatch;
         self.backgroundColor =
         [SKColor colorWithRed:0.10 green:0.10 blue:0.10 alpha:1.0];
         self.anchorPoint = CGPointMake(0.5, 0.5);
+        
+        CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        [blurFilter setDefaults];
+        [blurFilter setValue:[NSNumber numberWithFloat:10] forKey: @"inputRadius"];
+        [self setFilter:blurFilter];
+        
         _world = [[SKNode alloc] init];
         [_world setName:@"World"];
         
@@ -22,28 +29,14 @@ static void *deathWatch = &deathWatch;
         [_map setPosition:CGPointMake(0, 0)];
         [_map setZPosition:0];
         
-        _player = [[EvoCreature alloc] initWithID:0];
+        _player = [[EvoCreatureManager creatureManager] spawnCreatureWithType:@"primate"];
         
-        EvoBodyPart *larm = [[EvoBodyPart alloc] initWithID:0];
-        [larm setType:@"fighting"];
-        [larm setFunction:@"strike"];
-        EvoBodyPart *rarm = [[EvoBodyPart alloc] initWithID:1];
-        [rarm setType:@"fighting"];
-        [rarm setFunction:@"strike"];
-        EvoBodyPart *mouth = [[EvoBodyPart alloc] initWithID:2];
-        [mouth setType:@"fighting"];
-        [mouth setFunction:@"bite"];
-        
-        [_player attachPart:larm];
-        [_player attachPart:rarm];
-        [_player attachPart:mouth];
         
         Hex *playerSpawn = [_map getHexWithX:0 withY:0];
         
         [_player setName:@"Player"];
         [_player setHex: playerSpawn];
-        [_player setTexture:[SKTexture textureWithImageNamed:@"Sprites/Gorilla_Sprite.png"]];
-        [_player setScale:0.5];
+        [_player setScale:0.4];
         [playerSpawn setContents: _player];
         [_player setPosition:[playerSpawn getGridLoc]]; //
         [_player setZPosition:10];
@@ -61,6 +54,7 @@ static void *deathWatch = &deathWatch;
         [self addChild:_ui];
         
         _gameOver = NO;
+        _gamePaused = NO;
         
         [_player
          addObserver:self
@@ -69,20 +63,20 @@ static void *deathWatch = &deathWatch;
          context:deathWatch];
         [_player
          addObserver:self
-         forKeyPath:@"energy"
+         forKeyPath:@"stamina"
          options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
          context:deathWatch];
         [_player
          addObserver:self
-         forKeyPath:@"nutrients"
+         forKeyPath:@"biomass"
          options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew
          context:deathWatch];
-        [[EvoCreatureManager creatureManager] spawnCreature];
         
-        [_player setHealth:100];
-        [_player setEnergy:100];
-        [_player setNutrients:50];
-        
+        [_player setValue:[_player valueForKey:@"biomass"] forKeyPath:@"biomass"];
+        [_player setValue:[NSNumber numberWithFloat:0] forKeyPath:@"points"];
+        do {
+            [self spawnEnemy];
+        } while ([[[EvoAIManager AIManager] creatures] count] < 10);
     }
     return self;
 }
@@ -108,7 +102,7 @@ static void *deathWatch = &deathWatch;
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if (_gameOver) return;
+    if (_gameOver || _gamePaused) return;
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         NSArray *nodes = [self nodesAtPoint:location];
@@ -143,42 +137,23 @@ static void *deathWatch = &deathWatch;
                 [[EvoScriptManager scriptManager] startScriptNamed:@"heal" withSource:_player];
                 if ([(Hex *)touchedNode contents] != nil && ![[(Hex *)touchedNode contents].name isEqualToString:@"Player"]) {
                     //NSLog(@"Attacking!");
-                    [_player setTarget:[(Hex *)touchedNode contents]];
+                    [_player setValue:[(Hex *)touchedNode contents] forKeyPath:@"target"];
+                    [(EvoCreature *)[(Hex *)touchedNode contents] setValue:_player forKeyPath:@"target"];
                     [[EvoScriptManager scriptManager] startScriptNamed:@"attack" withSource:_player];
-                    //[_player attack:(EvoObject *)[(Hex *)touchedNode contents]];
-                    if ([(EvoObject *)[(Hex *)touchedNode contents] health] <= 0) {
+                    if ([[[(Hex *)touchedNode contents] valueForKeyPath:@"health"] floatValue] <= 0) {
                         //NSLog(@"Feeding!");
                         [[EvoScriptManager scriptManager] startScriptNamed:@"feed" withSource:_player];
                         [[(Hex *)touchedNode contents] removeFromParent];
-                        [[EvoCreatureManager creatureManager] setNumCreatures:[[EvoCreatureManager creatureManager] numCreatures] - 1];
-                    }
-                    else {
-                        [(EvoCreature *)[(Hex *)touchedNode contents] setTarget:_player];
-                        [[EvoScriptManager scriptManager] startScriptNamed:@"attack" withSource:[(Hex *)touchedNode contents]];
-                        //[(EvoCreature *)[(Hex *)touchedNode contents] attack:_player];
+                        [_player setValue:nil forKeyPath:@"target"];
+                        [[_player hex] setContents:nil];
+                        [_player setHex:(Hex *)touchedNode];
+                        [(Hex *)touchedNode setContents:_player];
+                        [_player setPosition:[(Hex *)touchedNode getGridLoc]];
                     }
                 }
                 else {
-                    if (arc4random()%(2+[[EvoCreatureManager creatureManager] numCreatures]/4) == 0) {
-                        //NSLog(@"Spawning new enemy");
-                        int randomX;
-                        int randomY;
-                        int randomZ;
-                        Hex *randomHex;
-                        
-                        do {
-                            randomX = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
-                            randomY = (((arc4random()%2)*2)-1) * (4 - (arc4random() % 3));
-                            randomZ = randomX+randomY;
-                            randomHex = [_map getHexWithX:[(Hex *)touchedNode x]+randomX withY:[(Hex *)touchedNode y]+randomY];
-                        } while ([randomHex type] == WaterHex || MAX(abs(_player.hex.x - randomHex.x), MAX(abs(_player.hex.y - randomHex.y), abs(_player.hex.z - randomHex.z))) <= 3);
-                        
-                        EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreature];
-                        
-                        [newCreature setHex:randomHex];
-                        [randomHex setContents:newCreature];
-                        [newCreature setPosition:[randomHex getGridLoc]];
-                        [_world addChild:newCreature];
+                    if (arc4random()%([[EvoCreatureManager creatureManager] numCreatures]*4) <= 10) {
+                        [self spawnEnemy];
                     }
                     [[_player hex] setContents:nil];
                     [_player setHex:(Hex *)touchedNode];
@@ -186,12 +161,171 @@ static void *deathWatch = &deathWatch;
                     [_player setPosition:[(Hex *)touchedNode getGridLoc]];
                 }
             }
+            [[EvoAIManager AIManager] update];
         }
     }
 }
 
+- (void) spawnEnemy
+{
+    //NSLog(@"Spawning new enemy");
+    int randomX;
+    int randomY;
+    Hex *randomHex;
+    
+    do {
+        randomX = (((arc4random()%2)*2)-1) * (5 - (arc4random() % 4));
+        randomY = (((arc4random()%2)*2)-1) * (5 - (arc4random() % 4));
+        randomHex = [_map getHexWithX:[[_player hex] x]+randomX withY:[[_player hex] x]+randomY];
+    } while ([randomHex type] == WaterHex || [randomHex contents] != nil ||
+             MAX(abs(_player.hex.x - randomHex.x), MAX(abs(_player.hex.y - randomHex.y), abs(_player.hex.z - randomHex.z))) <= 3);
+    
+    EvoCreature *newCreature = [[EvoCreatureManager creatureManager] spawnCreatureWithType:@"ursine" challenge:((arc4random()%4)+2)*0.2];
+    
+    [newCreature setHex:randomHex];
+    [randomHex setContents:newCreature];
+    [newCreature setPosition:[randomHex getGridLoc]];
+    [_world addChild:newCreature];
+    EvoAIManager *AIManager = [EvoAIManager AIManager];
+    [AIManager addCreature:newCreature];
+}
+
+- (void) presentUpgradeMenu {
+    if (!_upgradeView) {
+        _upgradeView = [[EvoUpgradeView alloc] initWithFrame:CGRectInset(self.frame, 4, 4)];
+        [_upgradeView setCenter:self.view.center];
+        
+        [[_upgradeView accept] addTarget:self action:@selector(menuTap:) forControlEvents:UIControlEventTouchUpInside];
+        [[_upgradeView cancel] addTarget:self action:@selector(menuTap:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view insertSubview:_upgradeView atIndex:0];
+    }
+    else {
+        NSLog(@"Unhiding menu");
+        [_upgradeView setHidden:NO];
+    }
+    
+    [[_upgradeView creatureInfo] setNumberOfLines:[[_player data] count]];
+    NSString *newInfo = @"";
+    //CONSTRUCT ARRAY OF UPGRADEABLE STRINGS!!!
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"health: %@\n",[[_player data] valueForKey:@"health"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"maxHealth: %@\n",[[_player data] valueForKey:@"maxHealth"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"healRate: %@\n",[[_player data] valueForKey:@"healRate"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"stamina: %@\n",[[_player data] valueForKey:@"stamina"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"maxStamina: %@\n",[[_player data] valueForKey:@"maxStamina"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"staminaRate: %@\n",[[_player data] valueForKey:@"staminaRate"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"attackPower: %@\n",[[_player data] valueForKey:@"attackPower"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"attackCost: %@\n",[[_player data] valueForKey:@"attackCost"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"accuracy: %@\n",[[_player data] valueForKey:@"accuracy"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"dodge: %@\n",[[_player data] valueForKey:@"dodge"]]];
+    newInfo = [newInfo stringByAppendingString:[NSString stringWithFormat:@"points: %@\n",[[_player data] valueForKey:@"points"]]];
+    [[_upgradeView creatureInfo] setText:[NSString stringWithFormat:@"%@",newInfo]];
+    
+}
+
+- (IBAction)menuTap:(id)sender {
+    if ([[sender title] isEqualToString:@"Accept"]) {
+        [sender setEnabled:YES];
+        [sender setTintAdjustmentMode:UIViewTintAdjustmentModeNormal];
+    }
+    if ([[sender titleForState:UIControlStateNormal] isEqualToString:@"Cancel"]) {
+        NSLog(@"Removing menu");
+        [_upgradeView setHidden:YES];
+        _gamePaused = NO;
+    }
+    //[(UIButton *)sender setSelected:YES];
+    
+    /*self.layer.cornerRadius = 8.0f;
+    self.layer.masksToBounds = NO;
+    self.layer.borderWidth = 1.0f;
+    
+    self.layer.shadowColor = [UIColor greenColor].CGColor;
+    self.layer.shadowOpacity = 0.8;
+    self.layer.shadowRadius = 12;
+    self.layer.shadowOffset = CGSizeMake(12.0f, 12.0f);*/
+    //NSLog(@"%@ Tapped:%@\nState:%u", [sender title], sender, [sender state]);
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    
+    if (context == deathWatch) {
+        if (!_gameOver && !_gamePaused) {
+            //Update Health Bar
+            if ([keyPath isEqualToString:@"health"]) {
+                if ([[_player valueForKey:@"health"] floatValue] <= 0.0) {
+                    [[_ui healthBar] setSize:CGSizeMake(0, [_ui healthBar].size.height)];
+                    _gameOver = YES;
+                }
+                else {
+                    [[_ui healthBar] setSize:CGSizeMake([[_player valueForKey:@"health"] floatValue]/[[_player valueForKey:@"maxHealth"] floatValue] * (self.size.width/3 - 20), [_ui healthBar].size.height)];
+                }
+            }
+            else if ([keyPath isEqualToString:@"stamina"]) {
+                if ([[_player valueForKey:@"stamina"] floatValue] <= 0.0) {
+                    [[_ui staminaBar] setSize:CGSizeMake(0, [_ui staminaBar].size.height)];
+                    _gameOver = YES;
+                }
+                else {
+                    [[_ui staminaBar] setSize:CGSizeMake([[_player valueForKey:@"stamina"] floatValue]/[[_player valueForKey:@"maxStamina"] floatValue] * (self.size.width/3 - 20), [_ui staminaBar].size.height)];
+                }
+            }
+            else {
+                if ([[_player valueForKey:@"biomass"] floatValue] <= 0.0) {
+                    [[_ui biomassBar] setSize:CGSizeMake(0, [_ui biomassBar].size.height)];
+                }
+                else  if ([[_player valueForKey:@"biomass"] floatValue] < [[_player valueForKey:@"biomassLimit"] floatValue]){
+                    [[_ui biomassBar] setSize:CGSizeMake([[_player valueForKey:@"biomass"] floatValue]/[[_player valueForKey:@"biomassLimit"] floatValue] * (self.size.width/3 - 20), [_ui biomassBar].size.height)];
+                }
+                else {
+                    [[_ui biomassBar] setSize:CGSizeMake((self.size.width/3 - 20), [_ui biomassBar].size.height)];
+                    _gamePaused = YES;
+                }
+            }
+            if (_gameOver) {
+                SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
+                [gameOver setZPosition:20];
+                [gameOver setText:@"You have died."];
+                [gameOver setFontSize:30];
+                [self addChild:gameOver];
+            }
+        }
+        return;
+    }
+    
+    if (NO) {//[object isKindOfClass:[EvoCharacter class]]) {
+        // Pass off to character manager?
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
+}
+
+
+- (void)update:(CFTimeInterval)currentTime
+{
+    if (_gameOver) return;
+    if (_gamePaused) {
+        if ([self shouldEnableEffects] == NO) {
+            [self setShouldEnableEffects:YES];
+            [self presentUpgradeMenu];
+        }
+    }
+    else if ([self shouldEnableEffects] == YES) {
+        [self setShouldEnableEffects:NO];
+    }
+    //Most likely never needed
+}
+
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer
 {
+    if (_gamePaused || _gameOver)
+        return;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         [recognizer setTranslation:CGPointZero inView:recognizer.view];
         
@@ -211,6 +345,8 @@ static void *deathWatch = &deathWatch;
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)recognizer
 {
+    if (_gamePaused || _gameOver)
+        return;
     CGPoint anchorPoint = [recognizer locationInView:recognizer.view];
     anchorPoint = [self convertPointFromView:anchorPoint];
     
@@ -240,72 +376,5 @@ static void *deathWatch = &deathWatch;
     }
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context
-{
-    
-    if (context == deathWatch && !_gameOver) {
-        //Update Health Bar
-        if ([keyPath isEqualToString:@"health"]) {
-            if ([_player health] <= 0.0) {
-                [[_ui healthBar] setSize:CGSizeMake(0, [_ui healthBar].size.height)];
-                _gameOver = YES;
-            }
-            else {
-                [[_ui healthBar] setSize:CGSizeMake([_player health]/100 * (self.size.width/3 - 20), [_ui healthBar].size.height)];
-            }
-        }
-        else if ([keyPath isEqualToString:@"energy"]) {
-            if ([_player energy] <= 0.0) {
-                [[_ui energyBar] setSize:CGSizeMake(0, [_ui energyBar].size.height)];
-                _gameOver = YES;
-            }
-            else {
-                [[_ui energyBar] setSize:CGSizeMake([_player energy]/100 * (self.size.width/3 - 20), [_ui energyBar].size.height)];
-            }
-        }
-        else {
-            if ([_player nutrients] <= 0.0) {
-                [[_ui nutrientsBar] setSize:CGSizeMake(0, [_ui nutrientsBar].size.height)];
-            }
-            else  if ([_player nutrients] < 200){
-                [[_ui nutrientsBar] setSize:CGSizeMake([_player nutrients]/200 * (self.size.width/3 - 20), [_ui nutrientsBar].size.height)];
-            }
-            else {
-                [[_ui nutrientsBar] setSize:CGSizeMake((self.size.width/3 - 20), [_ui nutrientsBar].size.height)];
-                SKLabelNode *levelUp = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
-                [levelUp setZPosition:20];
-                [levelUp setText:@"You are ready to evolve!"];
-                [levelUp setFontSize:30];
-                [self addChild:levelUp];
-            }
-        }
-        if (_gameOver) {
-            SKLabelNode *gameOver = [SKLabelNode labelNodeWithFontNamed:@"Damascus"];
-            [gameOver setZPosition:20];
-            [gameOver setText:@"You have died."];
-            [gameOver setFontSize:30];
-            [self addChild:gameOver];
-        }
-        return;
-    }
-    
-    if (NO) {//[object isKindOfClass:[EvoCharacter class]]) {
-        // Pass off to character manager?
-    } else {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
-    }
-}
-
-- (void)update:(CFTimeInterval)currentTime
-{
-    if (_gameOver) return;
-    //Most likely never needed
-}
 
 @end

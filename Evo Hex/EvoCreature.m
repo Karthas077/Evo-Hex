@@ -10,28 +10,39 @@
 
 @implementation EvoCreature
 
-- (EvoCreature *) initWithID:(NSUInteger) ID
+- (EvoCreature *) initWithDictionary:(NSMutableDictionary *)data
 {
-    self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Sprites/Gorilla_Sprite.png"]];
+    self = [super initWithTexture:[SKTexture textureWithImageNamed:@"Assets/Sprites/Gorilla_Sprite.png"]];
     if (self) {
-        _bodyParts = [[NSMutableDictionary alloc] init];
-        //For all organ types
-        [_bodyParts setObject:[[NSHashTable alloc] init] forKey:@"sensing"];
-        [_bodyParts setObject:[[NSHashTable alloc] init] forKey:@"moving"];
-        [_bodyParts setObject:[[NSHashTable alloc] init] forKey:@"fighting"];
-        [_bodyParts setObject:[[NSHashTable alloc] init] forKey:@"living"];
-        
-        _evolutions = [[NSHashTable alloc] init];
-        _creatureID = ID;
-        [self setHealth:100];
-        [self setHealRate:5];
-        [self setEnergy:100];
-        [self setEnergyRate:10];
-        [self setAttackPower:20];
-        [self setNutrients:100];
+        [self setData:[data mutableCopy]];
     }
     return self;
 }
+
+/*- (CGFloat) stamina
+{
+    return [[[self data] valueForKey:@"stamina"] floatValue];
+}
+- (CGFloat) biomass
+{
+    return [[[self data] valueForKey:@"biomass"] floatValue];
+}
+- (id) target
+{
+    return [[self data] valueForKey:@"target"];
+}
+- (void) setStamina:(CGFloat) stamina
+{
+    [[self data] setValue:[NSNumber numberWithFloat:stamina] forKey:@"stamina"];
+}
+- (void) setBiomass:(CGFloat) biomass
+{
+    [[self data] setValue:[NSNumber numberWithFloat:biomass] forKey:@"biomass"];
+}
+- (void) setTarget:(id) target
+{
+    [[self data] setValue:target forKey:@"target"];
+}*/
 
 - (void) attachPart:(EvoBodyPart *) part
 {
@@ -73,36 +84,49 @@
     return YES;
 }
 
-- (void) attack:(EvoObject *) target
+- (id)copyWithZone:(NSZone *)zone
 {
-    //Currently attacking with all
-    CGFloat attackDamage = 0;
-    for(EvoBodyPart *part in [_bodyParts valueForKey:@"fighting"]) {
-		if ([[part function] isEqualToString:@"bite"]) {
-            attackDamage = 10; // * [part efficacy];
-            NSLog(@"%@ bites for %f", [self name], attackDamage);
-            [target setHealth:([target health] - attackDamage)];
-        }
-        else if([[part function] isEqualToString:@"strike"]) {
-            attackDamage = 10;
-            NSLog(@"%@ strikes for %f", [self name], attackDamage);
-            [target setHealth:([target health] - attackDamage)];
-        }
-        else if([[part function] isEqualToString:@"grasp"]) {
-            attackDamage = 10;
-            NSLog(@"%@ chokes for %f", [self name], attackDamage);
-            [target setHealth:([target health] - attackDamage)];
-        }
-        else if([[part function] isEqualToString:@"poison"]) {
-            //Poison!
-        }
-	}
+    return [[EvoCreature alloc] initWithDictionary:[self data]];
 }
-
 
 - (NSUInteger) hash
 {
     return _creatureID;
+}
+
+- (id) valueForKey:(NSString *)key
+{
+    return [[self data] objectForKey:key];
+}
+
+- (id) valueForKeyPath:(NSString *)keyPath
+{
+    return [[self data] valueForKeyPath:keyPath];
+}
+
+- (void) setValue:(id)value forKey:(NSString *)key
+{
+    [[self data] setValue:value forKey:key];
+}
+
+- (void) setValue:(id)value forKeyPath:(NSString *)keyPath
+{
+    [[self data] setValue:value forKeyPath:keyPath];
+}
+
+- (void) addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context
+{
+    [[self data] addObserver:observer forKeyPath:keyPath options:options context:context];
+}
+
+- (void) removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath
+{
+    [[self data] removeObserver:observer forKeyPath:keyPath];
+}
+
+- (void) removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context
+{
+    [[self data] removeObserver:observer forKeyPath:keyPath context:context];
 }
 
 

@@ -61,7 +61,7 @@
             _tensileStrength = 28.85;
         }
         
-        //yieldStrength^2/(2*Modulus) = energy per unit volume without distortion
+        //yieldStrength^2/(2*Modulus) = stamina per unit volume without distortion
         //J/m^3
         _impactResilience = 10 * pow(_compressiveStrength, 2) / _bulkModulus;
         _shearResilience = 10 * pow(_shearStrength, 2) / _shearModulus;

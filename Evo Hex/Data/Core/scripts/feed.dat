@@ -4,12 +4,25 @@
 [
     ^store
     [
-        ^[%f+%f:nutrients:target.nutrients]:
-        nutrients
+        ^[%f+(%f*0.2):biomass:target.biomass]:
+        biomass
+    ]:
+    ^if
+    [
+       ^greaterthan
+        [
+            ^[%f:biomass]:
+            ^[%f:biomassLimit]
+        ]:
+        ^store
+        [
+            ^[%f:biomassLimit]:
+            biomass
+        ]
     ]:
     ^store
     [
-        ^[%f+1:attackPower]:
-        attackPower
+        ^[%f+%f:points:target.biomass]:
+        points
     ]
 ]

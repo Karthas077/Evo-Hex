@@ -11,8 +11,6 @@
 		19395A5F19725BCD00420BD8 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1951171F196C9B7500622136 /* Main_iPhone.storyboard */; };
 		19395A6019725BD500420BD8 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19511722196C9B7500622136 /* Main_iPad.storyboard */; };
 		19395A6E19725FDB00420BD8 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 19395A6D19725FDB00420BD8 /* Data */; };
-		19395A7019725FE400420BD8 /* Sprites in Resources */ = {isa = PBXBuildFile; fileRef = 19395A6F19725FE400420BD8 /* Sprites */; };
-		19395A7219725FEC00420BD8 /* Tiles in Resources */ = {isa = PBXBuildFile; fileRef = 19395A7119725FEC00420BD8 /* Tiles */; };
 		1951170C196C9B7500622136 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170B196C9B7500622136 /* Foundation.framework */; };
 		1951170E196C9B7500622136 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170D196C9B7500622136 /* CoreGraphics.framework */; };
 		19511710196C9B7500622136 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1951170F196C9B7500622136 /* UIKit.framework */; };
@@ -32,8 +30,10 @@
 		1951176C196C9BCF00622136 /* HexGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175B196C9BCF00622136 /* HexGrid.m */; };
 		1951176D196C9BCF00622136 /* Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1951175D196C9BCF00622136 /* Hex.m */; };
 		1951176E196C9BCF00622136 /* SuperHex.m in Sources */ = {isa = PBXBuildFile; fileRef = 19511760196C9BCF00622136 /* SuperHex.m */; };
-		1976322F1973E4E200090206 /* EvoUpgradeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 1976322E1973E4E200090206 /* EvoUpgradeScene.m */; };
+		1976322F1973E4E200090206 /* EvoUpgradeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1976322E1973E4E200090206 /* EvoUpgradeView.m */; };
 		197632321973E4F800090206 /* EvoCustomizeScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 197632311973E4F800090206 /* EvoCustomizeScene.m */; };
+		197632361974845200090206 /* Assets in Resources */ = {isa = PBXBuildFile; fileRef = 197632351974845200090206 /* Assets */; };
+		19763239197502D000090206 /* EvoAIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19763238197502D000090206 /* EvoAIManager.m */; };
 		19DADDAE19709BCA0079B382 /* EvoObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DADDAD19709BCA0079B382 /* EvoObjectManager.m */; };
 		19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88D196CA5B400BDD56B /* EvoBodyPart.m */; };
 		19F2A893196CA5B400BDD56B /* EvoCreature.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F2A88F196CA5B400BDD56B /* EvoCreature.m */; };
@@ -60,8 +60,6 @@
 		19395A461971463500420BD8 /* EvoScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoScript.h; sourceTree = "<group>"; };
 		19395A471971463500420BD8 /* EvoScript.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoScript.m; sourceTree = "<group>"; };
 		19395A6D19725FDB00420BD8 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Data; path = "Evo Hex/Data"; sourceTree = "<group>"; };
-		19395A6F19725FE400420BD8 /* Sprites */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sprites; path = "Evo Hex/Sprites"; sourceTree = "<group>"; };
-		19395A7119725FEC00420BD8 /* Tiles */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Tiles; path = "Evo Hex/Tiles"; sourceTree = "<group>"; };
 		19511708196C9B7500622136 /* Evo Hex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Evo Hex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1951170B196C9B7500622136 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1951170D196C9B7500622136 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,10 +94,13 @@
 		1951175E196C9BCF00622136 /* HexProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HexProtocol.h; sourceTree = "<group>"; };
 		1951175F196C9BCF00622136 /* SuperHex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperHex.h; sourceTree = "<group>"; };
 		19511760196C9BCF00622136 /* SuperHex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperHex.m; sourceTree = "<group>"; };
-		1976322D1973E4E200090206 /* EvoUpgradeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoUpgradeScene.h; sourceTree = "<group>"; };
-		1976322E1973E4E200090206 /* EvoUpgradeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoUpgradeScene.m; sourceTree = "<group>"; };
+		1976322D1973E4E200090206 /* EvoUpgradeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoUpgradeView.h; sourceTree = "<group>"; };
+		1976322E1973E4E200090206 /* EvoUpgradeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoUpgradeView.m; sourceTree = "<group>"; };
 		197632301973E4F800090206 /* EvoCustomizeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoCustomizeScene.h; sourceTree = "<group>"; };
 		197632311973E4F800090206 /* EvoCustomizeScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoCustomizeScene.m; sourceTree = "<group>"; };
+		197632351974845200090206 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Assets; path = "Evo Hex/Assets"; sourceTree = "<group>"; };
+		19763237197502D000090206 /* EvoAIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoAIManager.h; sourceTree = "<group>"; };
+		19763238197502D000090206 /* EvoAIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoAIManager.m; sourceTree = "<group>"; };
 		19DADDAC19709BCA0079B382 /* EvoObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoObjectManager.h; sourceTree = "<group>"; };
 		19DADDAD19709BCA0079B382 /* EvoObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvoObjectManager.m; sourceTree = "<group>"; };
 		19F2A88C196CA5B400BDD56B /* EvoBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvoBodyPart.h; sourceTree = "<group>"; };
@@ -152,8 +153,7 @@
 		195116FF196C9B7500622136 = {
 			isa = PBXGroup;
 			children = (
-				19395A7119725FEC00420BD8 /* Tiles */,
-				19395A6F19725FE400420BD8 /* Sprites */,
+				197632351974845200090206 /* Assets */,
 				19395A6D19725FDB00420BD8 /* Data */,
 				19511713196C9B7500622136 /* Evo Hex */,
 				1951173A196C9B7500622136 /* Evo HexTests */,
@@ -200,12 +200,14 @@
 				19F2A8B1196F82E100BDD56B /* EvoObject.m */,
 				19511754196C9BCF00622136 /* EvoGameScene.h */,
 				19511755196C9BCF00622136 /* EvoGameScene.m */,
-				1976322D1973E4E200090206 /* EvoUpgradeScene.h */,
-				1976322E1973E4E200090206 /* EvoUpgradeScene.m */,
+				1976322D1973E4E200090206 /* EvoUpgradeView.h */,
+				1976322E1973E4E200090206 /* EvoUpgradeView.m */,
 				197632301973E4F800090206 /* EvoCustomizeScene.h */,
 				197632311973E4F800090206 /* EvoCustomizeScene.m */,
 				19511756196C9BCF00622136 /* EvoMenuScene.h */,
 				19511757196C9BCF00622136 /* EvoMenuScene.m */,
+				19763237197502D000090206 /* EvoAIManager.h */,
+				19763238197502D000090206 /* EvoAIManager.m */,
 				19F2A89E196D230F00BDD56B /* EvoCreatureManager.h */,
 				19F2A89F196D230F00BDD56B /* EvoCreatureManager.m */,
 				19511758196C9BCF00622136 /* EvoUI.h */,
@@ -346,8 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19395A7219725FEC00420BD8 /* Tiles in Resources */,
-				19395A7019725FE400420BD8 /* Sprites in Resources */,
+				197632361974845200090206 /* Assets in Resources */,
 				19395A6E19725FDB00420BD8 /* Data in Resources */,
 				19395A6019725BD500420BD8 /* Main_iPad.storyboard in Resources */,
 				19395A5F19725BCD00420BD8 /* Main_iPhone.storyboard in Resources */,
@@ -371,7 +372,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1951176B196C9BCF00622136 /* EvoUI.m in Sources */,
-				1976322F1973E4E200090206 /* EvoUpgradeScene.m in Sources */,
+				1976322F1973E4E200090206 /* EvoUpgradeView.m in Sources */,
 				19F2A892196CA5B400BDD56B /* EvoBodyPart.m in Sources */,
 				19F2A8FE19708E9E00BDD56B /* EvoScriptManager.m in Sources */,
 				19F2A8A9196D300500BDD56B /* EvoDataManager.m in Sources */,
@@ -379,6 +380,7 @@
 				1951176E196C9BCF00622136 /* SuperHex.m in Sources */,
 				1951176A196C9BCF00622136 /* EvoMenuScene.m in Sources */,
 				19F2A89A196CE88100BDD56B /* EvoMaterial.m in Sources */,
+				19763239197502D000090206 /* EvoAIManager.m in Sources */,
 				1951176C196C9BCF00622136 /* HexGrid.m in Sources */,
 				19395A481971463500420BD8 /* EvoScript.m in Sources */,
 				19511727196C9B7500622136 /* EvoViewController.m in Sources */,
@@ -528,11 +530,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Garret Buell (TVGP8Z5AV5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Garret Buell (TVGP8Z5AV5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
 				INFOPLIST_FILE = "Evo Hex/Evo Hex-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4253BF38-AA83-4416-AE8F-3520EAE845E2";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -543,11 +547,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Garret Buell (TVGP8Z5AV5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Garret Buell (TVGP8Z5AV5)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Evo Hex/Evo Hex-Prefix.pch";
 				INFOPLIST_FILE = "Evo Hex/Evo Hex-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "4253BF38-AA83-4416-AE8F-3520EAE845E2";
 				SPRITEKIT_TEXTURE_ATLAS_OUTPUT = YES;
 				WRAPPER_EXTENSION = app;
 			};

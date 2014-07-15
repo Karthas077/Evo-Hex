@@ -27,7 +27,7 @@
 
 
 -(EvoBodyPart *) initWithID:(NSUInteger)ID;
--(void) addTissue:(EvoTissue *)tissue;
+-(void) attachTissue:(EvoTissue *)tissue;
 -(void) removeTissue:(EvoTissue *)tissue;
 -(void) attachToPart:(EvoBodyPart *)part;
 -(void) detachFromPart:(EvoBodyPart *)part;

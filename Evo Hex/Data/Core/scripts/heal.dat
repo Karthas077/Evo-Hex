@@ -1,60 +1,77 @@
 0
 0
-^ifelse
+^if
 [
-    ^and
+    ^greaterthan
     [
-        ^greaterthan
-        [
-            ^[%f:nutrients]:
-            0
-        ]:
-        ^lessthan
-        [
-            ^[%f:health]:
-            100
-        ]
+        ^[%f:biomass]:
+        0
     ]:
     ^run
     [
         ^store
         [
-            ^[%f+%f:health:healRate]:
-            health
+            ^[%f-%f:biomass:metabolicRate]:
+            biomass
         ]:
-        ^store
+        ^if
         [
-            ^[%f-5:nutrients]:
-            nutrients
-        ]
-    ]:
-    ^if
-    [
-        ^and
-        [
-            ^greaterthan
-            [
-                ^[%f:nutrients]:
-                0
-            ]:
             ^lessthan
             [
-                ^[%f:energy]:
-                100
+                ^[%f:health]:
+                ^[%f:maxHealth]
+            ]:
+            ^run
+            [
+                ^store
+                [
+                    ^[%f+%f:health:healRate]:
+                    health
+                ]:
+                ^if
+                [
+                    ^greaterthan
+                    [
+                        ^[%f:health]:
+                        ^[%f:maxHealth]
+                    ]:
+                    ^store
+                    [
+                        ^[%f:maxHealth]:
+                        health
+                    ]
+                ]
             ]
         ]:
-        ^run
+        ^if
         [
-            ^store
+            ^lessthan
             [
-                ^[%f+%f:energy:energyRate]:
-                energy
+                ^[%f:stamina]:
+                ^[%f:maxStamina]
             ]:
-            ^store
+            ^run
             [
-                ^[%f-5:nutrients]:
-                nutrients
+                ^store
+                [
+                    ^[%f+%f:stamina:staminaRate]:
+                    stamina
+                ]:
+                ^if
+                [
+                    ^greaterthan
+                    [
+                        ^[%f:stamina]:
+                        ^[%f:maxStamina]
+                    ]:
+                    ^store
+                    [
+                        ^[%f:maxStamina]:
+                        stamina
+                    ]
+                ]
             ]
         ]
     ]
+
 ]

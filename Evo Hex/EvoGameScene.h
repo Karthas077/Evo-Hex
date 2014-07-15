@@ -1,8 +1,10 @@
 #import <SpriteKit/SpriteKit.h>
 
 #import "HexGrid.h"
-#import "EvoCreatureManager.h"
+#import "EvoAIManager.h"
+#import "EvoDataManager.h"
 #import "EvoUI.h"
+#import "EvoUpgradeView.h"
 
 @interface EvoGameScene : SKScene
 
@@ -15,5 +17,9 @@
 
 @property UIPanGestureRecognizer *panRecognizer;
 @property UIPinchGestureRecognizer *pinchRecognizer;
+@property EvoUpgradeView *upgradeView;
+
+- (void) spawnEnemy;
+- (void) presentUpgradeMenu;
 
 @end

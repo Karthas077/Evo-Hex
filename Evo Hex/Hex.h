@@ -12,10 +12,10 @@ typedef NS_ENUM(NSInteger, HexType)
 };
 
 static NSString * const hexTextures[] =
- {@"Tiles/Grass_Hex.png",
-  @"Tiles/Mountain_Hex.png",
-  @"Tiles/Sand_Hex.png",
-  @"Tiles/Water_Hex.png"};
+ {@"Assets/Tiles/Grass_Hex.png",
+  @"Assets/Tiles/Mountain_Hex.png",
+  @"Assets/Tiles/Sand_Hex.png",
+  @"Assets/Tiles/Water_Hex.png"};
 
 @interface Hex : SKSpriteNode <HexProtocol>
 

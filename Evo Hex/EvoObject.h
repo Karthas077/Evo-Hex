@@ -33,8 +33,15 @@ typedef NS_ENUM(NSInteger, SenseType)
 
 @interface EvoObject : SKSpriteNode
 
-@property CGFloat health;
+@property NSMutableDictionary *data;
 
 - (EvoObject *) initWithTexture:(SKTexture *)texture;
+/*
+- (CGFloat) health;
+- (CGFloat) volume;
+- (CGFloat) mass;
+- (void) setHealth:(CGFloat) health;
+- (void) setVolume:(CGFloat) health;
+- (void) setMass:(CGFloat) health;*/
 
 @end

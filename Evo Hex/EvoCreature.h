@@ -13,29 +13,25 @@
 
 @interface EvoCreature : EvoObject
 
-@property NSString *name;
+@property NSString *type;
 @property NSUInteger creatureID;
 @property Hex *hex;
 @property EvoBodyPart *core;
 @property NSMutableDictionary *bodyParts;
 @property NSHashTable *evolutions;
 
-@property CGFloat mass;
-@property CGFloat volume;
-
-
+/*
 //FOR SCRIPT TESTING
 @property CGFloat healRate;
-@property CGFloat energy;
-@property CGFloat energyRate;
-@property CGFloat nutrients;
+@property CGFloat stamina;
+@property CGFloat staminaRate;
+@property CGFloat biomass;
 @property CGFloat attackPower;
 @property CGFloat noiseLevel;
 @property CGFloat visibility;
-@property (weak) EvoObject *target;
-//FOR SCRIPT TESTING
+*/
 
--(EvoCreature *) initWithID:(NSUInteger) ID;
+-(EvoCreature *) initWithDictionary:(NSMutableDictionary *) data;
 
 -(void) attachPart:(EvoBodyPart *) part;
 -(void) removePart:(EvoBodyPart *) part;
@@ -64,6 +60,13 @@
 //Reproduction
 
 - (BOOL) canDetect:(EvoCreature *)target;
-- (void) attack:(EvoObject *) target;
+
+/*
+- (CGFloat) stamina;
+- (CGFloat) biomass;
+- (id) target;
+- (void) setStamina:(CGFloat) stamina;
+- (void) setBiomass:(CGFloat) biomass;
+- (void) setTarget:(id) target;*/
 
 @end

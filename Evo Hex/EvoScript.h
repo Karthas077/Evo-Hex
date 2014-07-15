@@ -14,6 +14,7 @@ typedef NS_ENUM(NSInteger, scriptFunction)
     EVO_StoreLocal,
     EVO_Retrieve,
     EVO_RetrieveLocal,
+    EVO_Exists,
     EVO_Evaluate,
     EVO_Random,
     EVO_Run,
@@ -37,6 +38,7 @@ static NSString * const functions[] ={
     @"storelocal",
     @"retrieve",
     @"retrievelocal",
+    @"exists",
     @"evaluate",
     @"random",
     @"run",
@@ -68,6 +70,7 @@ static NSInteger const returnValues[] ={
     EVO_Boolean, //storelocal
     EVO_Object, //retrieve
     EVO_Object, //retrievelocal
+    EVO_Boolean, //exists
     EVO_Object, //evaluate
     EVO_Number, //random
     EVO_Boolean, //run

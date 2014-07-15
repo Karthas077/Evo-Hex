@@ -25,21 +25,21 @@
         [_healthBar setPosition:CGPointMake(-size.width/3, size.height*9/20-8)];
         [_healthBar addChild:[barBackground copy]];
         
-        _energyBar = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(size.width/3 - 20,size.height/10)];
-        [_energyBar setAnchorPoint:CGPointMake(0.5,0.5)];
-        [_energyBar setAlpha:0.8];
-        [_energyBar setPosition:CGPointMake(0, size.height*9/20-8)];
-        [_energyBar addChild:[barBackground copy]];
+        _staminaBar = [[SKSpriteNode alloc] initWithColor:[SKColor yellowColor] size:CGSizeMake(size.width/3 - 20,size.height/10)];
+        [_staminaBar setAnchorPoint:CGPointMake(0.5,0.5)];
+        [_staminaBar setAlpha:0.8];
+        [_staminaBar setPosition:CGPointMake(0, size.height*9/20-8)];
+        [_staminaBar addChild:[barBackground copy]];
         
-        _nutrientsBar = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(size.width/3 - 20,size.height/10)];
-        [_nutrientsBar setAnchorPoint:CGPointMake(0.5,0.5)];
-        [_nutrientsBar setAlpha:0.8];
-        [_nutrientsBar setPosition:CGPointMake(size.width/3, size.height*9/20-8)];
-        [_nutrientsBar addChild:[barBackground copy]];
+        _biomassBar = [[SKSpriteNode alloc] initWithColor:[SKColor brownColor] size:CGSizeMake(size.width/3 - 20,size.height/10)];
+        [_biomassBar setAnchorPoint:CGPointMake(0.5,0.5)];
+        [_biomassBar setAlpha:0.8];
+        [_biomassBar setPosition:CGPointMake(size.width/3, size.height*9/20-8)];
+        [_biomassBar addChild:[barBackground copy]];
         
         [self addChild:_healthBar];
-        [self addChild:_energyBar];
-        [self addChild:_nutrientsBar];
+        [self addChild:_staminaBar];
+        [self addChild:_biomassBar];
     }
     return self;
 }
@@ -51,13 +51,13 @@
     [_healthBar setYScale:[_healthBar yScale]*size.height/oldSize.height];
     [_healthBar setPosition:CGPointMake(-size.width/3, size.height*9/20-8)];
     
-    [_energyBar setXScale:[_energyBar xScale]*size.width/oldSize.width];
-    [_energyBar setYScale:[_energyBar yScale]*size.height/oldSize.height];
-    [_energyBar setPosition:CGPointMake(0, size.height*9/20-8)];
+    [_staminaBar setXScale:[_staminaBar xScale]*size.width/oldSize.width];
+    [_staminaBar setYScale:[_staminaBar yScale]*size.height/oldSize.height];
+    [_staminaBar setPosition:CGPointMake(0, size.height*9/20-8)];
     
-    [_nutrientsBar setXScale:[_nutrientsBar xScale]*size.width/oldSize.width];
-    [_nutrientsBar setYScale:[_nutrientsBar yScale]*size.height/oldSize.height];
-    [_nutrientsBar setPosition:CGPointMake(size.width/3, size.height*9/20-8)];
+    [_biomassBar setXScale:[_biomassBar xScale]*size.width/oldSize.width];
+    [_biomassBar setYScale:[_biomassBar yScale]*size.height/oldSize.height];
+    [_biomassBar setPosition:CGPointMake(size.width/3, size.height*9/20-8)];
 }
 
 @end

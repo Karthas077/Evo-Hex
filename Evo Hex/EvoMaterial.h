@@ -24,7 +24,7 @@
 @property CGFloat youngsModulus;
 @property CGFloat poissonRatio;
 
-//yieldStrength^2/(2*Modulus) = energy per unit volume without distortion
+//yieldStrength^2/(2*Modulus) = stamina per unit volume without distortion
 @property CGFloat impactResilience;
 @property CGFloat shearResilience;
 @property CGFloat tensileResilience;

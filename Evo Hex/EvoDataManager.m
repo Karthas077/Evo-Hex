@@ -239,7 +239,7 @@
         if ([@"creatures" isEqualToString:[[file stringByDeletingLastPathComponent] lastPathComponent]] &&
             [activeMods containsObject:[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]] &&
             [[file pathExtension] isEqualToString: @"dat"]) {
-            [creatures addObject:[self parseCreature: [[gameDataPath stringByAppendingPathComponent:@"creatures"] stringByAppendingPathComponent:file]]];
+            [creatures addObject:[self parseCreature: [gameDataPath stringByAppendingPathComponent:file]]];
         }
     }
     
@@ -248,7 +248,20 @@
 
 - (EvoCreature *) parseCreature:(NSString *) file
 {
-    return [[EvoCreature alloc] init];
+    NSError *error = nil;
+    NSMutableString *contents = [[NSMutableString alloc] initWithContentsOfFile:file encoding:NSUTF8StringEncoding error:&error];
+    NSArray *keyValuePairs = [contents componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\n"]];
+    NSMutableArray *values = [[NSMutableArray alloc] init];
+    NSMutableArray *keys = [[NSMutableArray alloc] init];
+    for (NSString *keyValue in keyValuePairs) {
+        [keys addObject:[[keyValue componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] objectAtIndex:0]];
+        [values addObject:[NSNumber numberWithFloat:[[[keyValue componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@":"]] objectAtIndex:1] floatValue]]];
+    }
+    EvoCreature *newCreature = [[EvoCreature alloc] initWithDictionary:[NSMutableDictionary dictionaryWithObjects:values forKeys:keys]];
+    [newCreature setType:[[file lastPathComponent] stringByDeletingPathExtension]];
+    
+    //NSLog(@"%@", [newCreature data]);
+    return newCreature;
 }
 
 - (NSArray *) loadScripts
@@ -361,7 +374,7 @@
         //NSLog(@"for label:%@ replacing:%@ with:%@", label, match, replacement);
         
         [codeLookup setObject:[[match substringWithRange:NSMakeRange(1, [match length]-2)]componentsSeparatedByString:@":"] forKey:replacement];
-        [labelLookup setObject:[NSNumber numberWithInt:function] forKey:replacement];
+        [labelLookup setObject:[NSNumber numberWithLong:function] forKey:replacement];
         
         // make the replacement
         [contents replaceCharactersInRange:subscript withString:replacement];

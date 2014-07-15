@@ -7,23 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EvoDataManager.h"
+#import "EvoCreature.h"
+#import "EvoScriptManager.h"
 
 @interface EvoCreatureManager : NSObject {
-    NSMutableArray *creatures;
+    NSMutableDictionary *materials;
+    NSMutableDictionary *tissues;
+    NSMutableDictionary *bodyParts;
+    NSMutableDictionary *evolutions;
+    NSMutableDictionary *creatures;
 }
 
-@property NSArray *materials;
-@property NSArray *tissues;
-@property NSArray *creatureFunctions;
-@property NSArray *bodyParts;
-@property NSArray *evolutions;
-@property NSMutableArray *creatures;
+@property NSMutableDictionary *materials;
+@property NSMutableDictionary *tissues;
+@property NSMutableDictionary *bodyParts;
+@property NSMutableDictionary *evolutions;
+@property NSMutableDictionary *creatures;
 @property NSUInteger numCreatures;
 @property NSUInteger numParts;
 
 + (id) creatureManager;
 
-- (EvoCreature *) spawnCreature;
+- (BOOL) addMaterial:(EvoMaterial *)material;
+- (BOOL) addTissue:(EvoTissue *)tissue;
+- (BOOL) addBodyPart:(EvoBodyPart *)bodyPart;
+- (BOOL) addEvolution:(EvoEvolution *)evolution;
+- (BOOL) addCreature:(EvoCreature *)creature;
+- (EvoCreature *) spawnCreatureWithType:(NSString *)type;
+- (EvoCreature *) spawnCreatureWithType:(NSString *)type challenge:(CGFloat) challenge;
 
 @end

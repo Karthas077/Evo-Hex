@@ -1,0 +1,13 @@
+health:1500
+maxHealth:1500
+healRate:20
+stamina:1000
+maxStamina:1000
+staminaRate:50
+biomass:800
+biomassLimit:900
+metabolicRate:4
+attackPower:1000
+attackCost:100
+accuracy:0.9
+dodge:0.6

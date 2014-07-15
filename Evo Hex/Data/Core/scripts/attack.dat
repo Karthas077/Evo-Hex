@@ -1,15 +1,51 @@
 0
 0
-^run
+^if
 [
-    ^store
+    ^and
     [
-        ^[%f-%f:target.health:attackPower]:
-        target.health
+        ^exists
+        [
+            target
+        ]:
+        ^greaterthan
+        [
+            ^[%f:stamina]:
+            ^[%f:attackCost]
+        ]
     ]:
-    ^store
+    ^run
     [
-        ^[%f-10:energy]:
-        energy
+        ^if
+        [
+            ^lessthan
+            [
+                ^random[0:1000]:
+                ^[%f*1000:accuracy]
+            ]:
+            ^if
+            [
+                ^lessthan
+                [
+                    ^random[0:1000]:
+                    ^[(1-%f)*1000:target.dodge]
+                ]:
+                ^store
+                [
+                    ^[%f-%f:target.health:attackPower]:
+                    target.health
+                ]
+            ]
+        ]:
+        ^store
+        [
+            ^[%f-%f:stamina:attackCost]:
+            stamina
+        ]:
+        ^store
+        [
+            ^[%f-%f:biomass:metabolicRate]:
+            biomass
+        ]
     ]
 ]

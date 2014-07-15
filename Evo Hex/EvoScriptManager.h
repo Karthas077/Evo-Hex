@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "EvoObjectManager.h"
 #import "EvoScript.h"
 
 @interface EvoScriptManager : NSObject {
